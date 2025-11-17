@@ -274,7 +274,7 @@ function App() {
 
                   <p>
                     Today, I focus on connecting business intuition with technical precision.<br />
-                    I automate processes with Python, uncover insights through SQL, and build applications and dashboards that transform complexity into clarity and deliver real, practical value.
+                    I automate processes with Python, uncover insights through SQL, build applications and dashboards that transform complexity into clarity and deliver real, practical value.
                   </p>
 
                   <p>

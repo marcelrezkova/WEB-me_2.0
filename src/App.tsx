@@ -148,7 +148,7 @@ function App() {
         }`}>
           <div className="max-w-7xl mx-auto px-6 py-6 flex justify-end items-center">
             <a
-              href="https://www.buymeacoffee.com/"
+              href="https://buymeacoffee.com/marcelarezd"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 ml-4 px-3 py-2 rounded-full hover:shadow-lg transition-all group"

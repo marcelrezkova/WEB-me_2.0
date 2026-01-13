@@ -237,14 +237,14 @@ function App() {
                 <>
                   <p>
                     Nejsem člověk, který zapadne do jedné role a miluje mikro-managment.<br />
-                    Jsem hybrid — část datové analytičky, část developerky, část tvůrkyně.<br />
+                    Jsem hybrid část datové analytičky, část developerky, část tvůrkyně.<br />
                     Někdo, kdo se naučil přetvářet chaos v řád a nejasno ve strukturu, protože musel, proto můžu říct jsem schopna sama na sebe vytvořit velmi silný tlak, který mě neustále nutí se učit a zdokonalovat v tom co dělám, abych dosáhla mé vytoužené svobody a work life balance.
                   </p>
 
                   <p>
-                    Moje cesta nebyla rovná.<br />
+                    Moje cesta byla nekonvenční.<br />
                     Začínala jsem v obchodu a provozu, kde jsem pochopila, jak lidé přemýšlí, jak fungují týmy a co skutečně drží firmy nad vodou.<br />
-                    Ale teprve data mi dala něco, co jsem dlouho hledala — možnost vidět pod povrch a dát smysl tomu, co se zdá být jen šum.
+                    Ale teprve data mi dala něco, co jsem dlouho hledala možnost vidět pod povrch a dát smysl tomu, co se zdá být jen šum.
                   </p>
 
                   <p>
@@ -254,22 +254,22 @@ function App() {
 
                   <p>
                     Moje cesta mě naučila vytrvalosti, adaptabilitě a odvaze znovu přetvořit, co nefunguje, kdykoli je to potřeba.<br />
-                    Od vedení týmů až po návrh datových pipeline, od prodeje až po vývoj webových aplikací — každá kapitola přidala další vrstvu tomu, kým jsem dnes.
+                    Od vedení týmů až po návrh datových pipeline, od prodeje až po vývoj webových aplikací každá kapitola přidala další vrstvu tomu, kým jsem dnes.
                   </p>
                 </>
               ) : (
                 <>
                   <p>
                     I’m not someone who fits neatly into a single role.<br />
-                    I’m a hybrid — part data analyst, part developer, part creator.<br />
+                    I’m a hybrid part data analyst, part developer, part creator.<br />
                     I learned to turn chaos into order and uncertainty into structure because life demanded it.<br />
-                    Along the way, I built the discipline to push myself forward — to keep learning, improving, and moving closer to the freedom and work–life balance I’m determined to create.
+                    Along the way, I built the discipline to push myself forward to keep learning, improving, and moving closer to the freedom and work–life balance I’m determined to create.
                   </p>
 
                   <p>
                     My path has been far from linear.<br />
                     I began in sales and operations, where I learned how people think, how teams function, and what truly keeps a business running.<br />
-                    But it was data that finally gave me what I had been searching for — the ability to see beneath the surface and bring meaning to what others perceive as noise.
+                    But it was data that finally gave me what I had been searching for the ability to see beneath the surface and bring meaning to what others perceive as noise.
                   </p>
 
                   <p>
@@ -279,7 +279,7 @@ function App() {
 
                   <p>
                     My journey has taught me resilience, adaptability, and the courage to redesign whatever no longer works.<br />
-                    From leading teams to designing data pipelines, from sales to developing web applications — every chapter has added another layer to who I am today.
+                    From leading teams to designing data pipelines, from sales to developing web applications every chapter has added another layer to who I am today.
                   </p>
                 </>
               )}
@@ -363,8 +363,8 @@ function App() {
 
             <p className="text-xl font-light text-gray-600 dark:text-gray-400 mb-12 leading-relaxed">
               {isCzech
-                ? "Ať už hledáte datovou analytičku, která je otevřena businessu, vývojářku, nebo si chcete jen popovídat o nápadech — ráda se s vámi spojím."
-                : "Whether you're looking for a data analyst who understands business, a developer, or simply want to discuss ideas—I'd love to hear from you."}
+                ? "Ať už hledáte datovou analytičku, která je otevřena businessu, vývojářku, nebo si chcete jen popovídat o nápadech ráda se s vámi spojím."
+                : "Whether you're looking for a data analyst who understands business, a developer, or simply want to discuss ideas. I'd love to hear from you."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

@@ -20,7 +20,7 @@ function CollapsibleExperience({ isCzech }: { isCzech: boolean }) {
               {isCzech ? (
                 <>
                   <ExperienceCard
-                    title="Data analytička (začínající kariéra)"
+                    title="Data analytička"
                     company="IIIDM international consulting"
                     period="07/2025 - současnost"
                     description="Práce na kvalitě dat a automatizaci v mezinárodním prostředí. Python skripty pro validaci, API integrace a optimalizaci ETL. Vývoj Streamlit aplikací pro kontrolu dat a interní dashboardy."
@@ -58,7 +58,7 @@ function CollapsibleExperience({ isCzech }: { isCzech: boolean }) {
               ) : (
                 <>
                   <ExperienceCard
-                    title="Data Analyst (Early Career)"
+                    title="Data Analyst"
                     company="IIIDM international consulting"
                     period="07/2025 - Present"
                     description="Working on data quality and automation in an international environment. Python scripts for validation, API integration, and ETL optimization. Developing Streamlit apps for data review and internal dashboards."
@@ -238,13 +238,13 @@ function App() {
                   <p>
                   Datově orientovaný profil zaměřený na průnik byznysového myšlení, analytiky a vývoje softwaru.
                   Pohodlný v agilním prostředí, se schopností převzít odpovědnost a doručovat výsledky i samostatně.
-                  Komplexita se převádí do struktury — protože výsledky jsou měřitelné.
+                  Komplexita se převádí do struktury, protože výsledky jsou měřitelné.
                   </p>
 
                   <p>
                   Nekonvenční profesní cesta formovaná prodejem, provozem a rozvojem byznysu.
                   Tento základ přináší hluboké porozumění reálným potřebám firem, fungování týmů a rozhodovacím procesům.
-                  Přirozená zvědavost vedla k technologiím, systémům a datům — od porozumění výstupům až po jejich technickou realizaci.
+                  Přirozená zvědavost vedla k technologiím, systémům a datům, od porozumění výstupům až po jejich technickou realizaci.
                   </p>
 
                   <p>
@@ -259,13 +259,13 @@ function App() {
                   <p>
                   A data-driven profile focused on the intersection of business thinking, analytics, and software development.
                   Comfortable in agile environments, with the ability to take ownership and deliver independently when needed.
-                  Complexity is translated into structure — because outcomes are measurable.
+                  Complexity is translated into structure, because outcomes are measurable.
                   </p>
 
                   <p>
                   An unconventional background shaped through sales, operations, and business development.
                   This foundation brings a strong understanding of real business needs, team dynamics, and decision-making processes.
-                  Curiosity naturally led toward technology, systems, and data — from understanding outputs to building them.
+                  Curiosity naturally led toward technology, systems, and data, from understanding outputs to building them.
                   </p>
 
                   <p>
@@ -309,7 +309,8 @@ function App() {
               <SkillCategory
                 title="Development"
                 skills={[
-                  { name: 'Web Development (HTML/CSS/JavaScript/React)', level: 'Intermediate' },
+                  { name: 'Web Development', level: 'Intermediate' },
+                  { name: 'HTML/CSS/JavaScript/React', level: 'Intermediate' },
                   { name: 'Node.js', level: 'Intermediate' },
                   { name: 'TailwindCSS', level: 'Intermediate' },
                   { name: 'API Integration', level: 'Upper-Intermediate' },

@@ -356,6 +356,14 @@ function App() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <a
+                href="tel:734424465"
+                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
+              >
+                {/* Phone SVG icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/></svg>
+                {isCzech ? 'Zavolejte mi' : 'Call me'}
+              </a>
+              <a
                 href="mailto:marcelarezkova98@gmail.com"
                 className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
               >

@@ -6,7 +6,7 @@ function CollapsibleExperience({ isCzech }: { isCzech: boolean }) {
   return (
     <div>
       <button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen((v: boolean) => !v)}
         className="mb-8 px-6 py-3 border border-black dark:border-white rounded-full bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 font-semibold text-lg mx-auto block"
         aria-expanded={open}
         aria-controls="experience-content"
@@ -61,36 +61,36 @@ function CollapsibleExperience({ isCzech }: { isCzech: boolean }) {
                     title="Data Analyst (Early Career)"
                     company="IIIDM international consulting"
                     period="07/2025 - Present"
-                    description="Working on data quality and automation pipelines in international ecosystems. Writing Python scripts for validation, API integrations, and ETL optimization. Developing Streamlit apps for data review and internal dashboards."
-                    highlights={["Python automation & API integrations","Streamlit dashboard development","Real estate analytics projects","Multi-source data management"]}
+                    description="Working on data quality and automation in an international environment. Python scripts for validation, API integration, and ETL optimization. Developing Streamlit apps for data review and internal dashboards."
+                    highlights={["Python automation & API integration","Streamlit dashboard development","Real estate analytics projects","Managing data from multiple sources"]}
                   />
                   <ExperienceCard
                     title="Freelance Web Developer"
                     company="Self-employed"
                     period="01/2025 - Present"
-                    description="Designing and delivering responsive websites for small businesses using modern web technologies. Focused on clean UX and maintainable architectures."
-                    highlights={["Node.js & TailwindCSS development","Custom digital solutions","Client-focused design approach"]}
+                    description="Designing and building responsive websites for small businesses using modern technologies. Focus on clean UX and sustainable code."
+                    highlights={["Node.js & TailwindCSS development","Custom digital solutions","Client-oriented design"]}
                   />
                   <ExperienceCard
                     title="Founder & Project Administrator"
                     company="Valeolla consulting"
                     period="05/2022 - 10/2025"
-                    description="Founded and managed a consulting business focused on administrative support and funding documentation for public and private sectors."
-                    highlights={["Business operations management","Project coordination","Public & private sector consulting"]}
+                    description="Founded and managed a consulting company focused on administrative support and grant documentation for public and private sectors."
+                    highlights={["Company operations management","Project coordination","Consulting for public & private sector"]}
                   />
                   <ExperienceCard
                     title="Sales Team Manager"
                     company="DoxoLogic - Cybersecurity Solutions"
                     period="12/2022 - 12/2023"
-                    description="Led a team of 4 sales representatives focused on cybersecurity and IT infrastructure services. Achieved 20% monthly performance improvement through data-driven strategies."
-                    highlights={["Team leadership & performance tracking","Conversion metrics analysis","Technical solution translation","20% performance improvement"]}
+                    description="Led a team of 4 salespeople focused on cybersecurity and IT infrastructure. Achieved 20% monthly performance improvement through data-driven strategies."
+                    highlights={["Team leadership & performance tracking","Conversion metrics analysis","Translating technical solutions","20% performance improvement"]}
                   />
                   <ExperienceCard
                     title="Sales Representative"
                     company="Bohemia Energy"
                     period="07/2020 - 10/2021"
-                    description="Built a portfolio of 200+ active clients with 80% average conversion rate. Exceeded monthly sales targets by 15-25% through effective communication."
-                    highlights={["80% conversion rate","200+ client portfolio","Consistent target overachievement","Client relationship management"]}
+                    description="Built a portfolio of 200+ active clients with an average conversion rate of 80%. Consistently exceeded monthly targets by 15–25% through effective communication."
+                    highlights={["80% conversion success","200+ client portfolio","Consistently exceeding targets","Client relationship management"]}
                   />
                 </>
               )}
@@ -183,7 +183,7 @@ function App() {
               {isCzech ? 'Marcela Řezková' : 'Marcela Rezkova'}
             </h1>
             <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-400 mb-12 tracking-wide">
-              Data Analyst · Web Developer · Early Career
+              Data Science · Full stack developer · Web Developer
             </p>
             <button
               onClick={() => scrollToSection('contact')}
@@ -194,7 +194,7 @@ function App() {
             <div className="mt-12">
               <button
                 className="px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase mb-8"
-                onClick={() => setShowPortfolio((v) => !v)}
+                onClick={() => setShowPortfolio((v: boolean) => !v)}
               >
                 {isCzech ? 'Portfolio' : 'Portfolio'}
               </button>
@@ -236,50 +236,42 @@ function App() {
               {isCzech ? (
                 <>
                   <p>
-                    Nejsem člověk, který zapadne do jedné role a miluje mikro-managment.<br />
-                    Jsem hybrid část datové analytičky, část developerky, část tvůrkyně.<br />
-                    Někdo, kdo se naučil přetvářet chaos v řád a nejasno ve strukturu, protože musel, proto můžu říct jsem schopna sama na sebe vytvořit velmi silný tlak, který mě neustále nutí se učit a zdokonalovat v tom co dělám, abych dosáhla mé vytoužené svobody a work life balance.
+                  Datově orientovaný profil zaměřený na průnik byznysového myšlení, analytiky a vývoje softwaru.
+                  Pohodlný v agilním prostředí, se schopností převzít odpovědnost a doručovat výsledky i samostatně.
+                  Komplexita se převádí do struktury — protože výsledky jsou měřitelné.
                   </p>
 
                   <p>
-                    Moje cesta byla nekonvenční.<br />
-                    Začínala jsem v obchodu a provozu, kde jsem pochopila, jak lidé přemýšlí, jak fungují týmy a co skutečně drží firmy nad vodou.<br />
-                    Ale teprve data mi dala něco, co jsem dlouho hledala možnost vidět pod povrch a dát smysl tomu, co se zdá být jen šum.
+                  Nekonvenční profesní cesta formovaná prodejem, provozem a rozvojem byznysu.
+                  Tento základ přináší hluboké porozumění reálným potřebám firem, fungování týmů a rozhodovacím procesům.
+                  Přirozená zvědavost vedla k technologiím, systémům a datům — od porozumění výstupům až po jejich technickou realizaci.
                   </p>
 
                   <p>
-                    Dnes se učím propojovat byznysovou intuici s technickou přesností.<br />
-                    Učím se automatizovat procesy pomocí Pythonu, odkrývat souvislosti pomocí SQL, stavět aplikace a dashboardy, které převádějí složitost do jednoduchosti a přináší hlavně užitečnost.
-                  </p>
-
-                  <p>
-                    Moje cesta mě naučila vytrvalosti, adaptabilitě a odvaze znovu přetvořit, co nefunguje, kdykoli je to potřeba.<br />
-                    Od vedení týmů až po návrh datových pipeline, od prodeje až po vývoj webových aplikací každá kapitola přidala další vrstvu tomu, kým jsem dnes.
+                  Aktuální fokus spojuje byznysový kontext s technickou exekucí.
+                  Procesy jsou automatizovány pomocí Pythonu, datové sady analyzovány v DuckDB a SQL
+                  a výstupy prezentovány prostřednictvím aplikací ve Streamlitu a dashboardů postavených v Reactu.
+                  Prioritou zůstává praktický dopad: přehlednost, efektivita a škálovatelná řešení.
                   </p>
                 </>
               ) : (
                 <>
                   <p>
-                    I’m not someone who fits neatly into a single role.<br />
-                    I’m a hybrid part data analyst, part developer, part creator.<br />
-                    I learned to turn chaos into order and uncertainty into structure because life demanded it.<br />
-                    Along the way, I built the discipline to push myself forward to keep learning, improving, and moving closer to the freedom and work–life balance I’m determined to create.
+                  A data-driven profile focused on the intersection of business thinking, analytics, and software development.
+                  Comfortable in agile environments, with the ability to take ownership and deliver independently when needed.
+                  Complexity is translated into structure — because outcomes are measurable.
                   </p>
 
                   <p>
-                    My path has been far from linear.<br />
-                    I began in sales and operations, where I learned how people think, how teams function, and what truly keeps a business running.<br />
-                    But it was data that finally gave me what I had been searching for the ability to see beneath the surface and bring meaning to what others perceive as noise.
+                  An unconventional background shaped through sales, operations, and business development.
+                  This foundation brings a strong understanding of real business needs, team dynamics, and decision-making processes.
+                  Curiosity naturally led toward technology, systems, and data — from understanding outputs to building them.
                   </p>
 
                   <p>
-                    Today, I focus on connecting business intuition with technical precision.<br />
-                    I automate processes with Python, uncover insights through SQL, build applications and dashboards that transform complexity into clarity and deliver real, practical value.
-                  </p>
-
-                  <p>
-                    My journey has taught me resilience, adaptability, and the courage to redesign whatever no longer works.<br />
-                    From leading teams to designing data pipelines, from sales to developing web applications every chapter has added another layer to who I am today.
+                  Current focus lies in connecting business context with technical execution.
+                  Processes are automated using Python, datasets analyzed with DuckDB and SQL, and insights delivered through Streamlit applications and React-based dashboards.
+                  The priority remains practical impact: clarity, efficiency, and scalable solutions.
                   </p>
                 </>
               )}
@@ -317,13 +309,13 @@ function App() {
               <SkillCategory
                 title="Development"
                 skills={[
-                  { name: 'Web Development (HTML/CSS)', level: 'Intermediate' },
-                  { name: 'Node.js', level: 'Junior-Intermediate' },
+                  { name: 'Web Development (HTML/CSS/JavaScript/React)', level: 'Intermediate' },
+                  { name: 'Node.js', level: 'Intermediate' },
                   { name: 'TailwindCSS', level: 'Intermediate' },
                   { name: 'API Integration', level: 'Upper-Intermediate' },
                   { name: 'Automation', level: 'Upper-Intermediate' },
                   { name: 'REST APIs', level: 'Intermediate-Plus' },
-                  { name: 'Git & GitHub', level: 'Intermediate' }
+                  { name: 'Git', level: 'Intermediate' }
                 ]}
               />
 
@@ -331,12 +323,9 @@ function App() {
                 title="Business"
                 skills={[
                   { name: 'Business Development', level: 'Intermediate' },
-                  { name: 'Sales Strategy', level: 'Junior-Intermediate' },
-                  { name: 'Project Coordination', level: 'Intermediate-Plus' },
                   { name: 'Process Optimization', level: 'Intermediate-Plus' },
-                  { name: 'Team Leadership', level: 'Junior-Intermediate' },
                   { name: 'Analytical Thinking', level: 'Advanced' },
-                  { name: 'Communication', level: 'Upper-Intermediate' }
+                  { name: 'Agile Methodologies', level: 'Intermediate' },
                 ]}
               />
 
@@ -345,10 +334,7 @@ function App() {
                 skills={[
                   { name: 'Personal Branding', level: 'Intermediate-Plus' },
                   { name: 'Content Strategy', level: 'Intermediate-Plus' },
-                  { name: 'Social Media Management', level: 'Intermediate' },
-                  { name: 'Video Storytelling', level: 'Junior-Intermediate' },
                   { name: 'Creative Direction', level: 'Advanced' },
-                  { name: 'Aesthetic Design Sense', level: 'Advanced' }
                 ]}
               />
             </div>

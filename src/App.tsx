@@ -226,7 +226,7 @@ function App() {
           </div>
         </section>
 
-        <section id="letter" className="py-32 px-6 bg-gray-50 dark:bg-gray-950">
+        {/* <section id="letter" className="py-32 px-6 bg-gray-50 dark:bg-gray-950">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-16 text-center">
               {isCzech ? 'Pár slov o mě' : 'A few words about me'}
@@ -277,7 +277,7 @@ function App() {
               )}
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="experience" className="py-32 px-6">
           <div className="max-w-6xl mx-auto">

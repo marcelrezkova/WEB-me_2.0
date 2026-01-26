@@ -330,14 +330,14 @@ function App() {
                 ]}
               />
 
-              <SkillCategory
+              {/* <SkillCategory
                 title="Branding & Media Skills"
                 skills={[
                   { name: 'Personal Branding', level: 'Intermediate-Plus' },
                   { name: 'Content Strategy', level: 'Intermediate-Plus' },
                   { name: 'Creative Direction', level: 'Advanced' },
                 ]}
-              />
+              /> */}
             </div>
           </div>
         </section>

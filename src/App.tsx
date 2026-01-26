@@ -288,7 +288,7 @@ function App() {
         <section id="skills" className="py-32 px-6 bg-gray-50 dark:bg-gray-950">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center">
-              Skills
+              Skills Set
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16">

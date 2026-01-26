@@ -279,7 +279,7 @@ function App() {
           </div>
         </section> */}
 
-        <section id="experience" className="py-32 px-6">
+        <section id="experience" className="py-20 px-6">
           <div className="max-w-6xl mx-auto">
             <CollapsibleExperience isCzech={isCzech} />
           </div>

@@ -291,7 +291,7 @@ function App() {
               Skills
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
               <SkillCategory
                 title="Data & Analytics"
                 skills={[

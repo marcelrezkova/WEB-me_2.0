@@ -1,134 +1,263 @@
-// Collapsible sekce pro Experience
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Mail, Github, Phone, Download, Linkedin, ChevronDown, ChevronUp, Database, Code, Brain, Terminal } from 'lucide-react';
+import { TechFox, TechFoxIcon } from './components/FoxMascot';
+import { GlowOrb, GridBackground, SectionDivider } from './components/DecorativeElements';
 
-function CollapsibleExperience({ isCzech }: { isCzech: boolean }) {
+// ─── Scroll Reveal Hook ───
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
+function ScrollReveal({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const ref = useScrollReveal();
+  return <div ref={ref} className={`scroll-reveal ${className}`}>{children}</div>;
+}
+
+// ─── Typing Effect ───
+function TypingText({ text, className = '' }: { text: string; className?: string }) {
+  const [displayed, setDisplayed] = useState('');
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        setDisplayed(text.slice(0, i + 1));
+        i++;
+      } else {
+        setDone(true);
+        clearInterval(interval);
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return (
+    <span className={className}>
+      {displayed}
+      {!done && <span className="animate-cursor-blink text-neon-cyan">|</span>}
+    </span>
+  );
+}
+
+// ─── Data ───
+const isCzech = typeof navigator !== 'undefined' && navigator.language.startsWith('cs');
+
+const projects = [
+  {
+    id: 'trefkara',
+    title: 'Tref Kára',
+    subtitle: isCzech ? 'AI car marketplace engine' : 'AI car marketplace engine',
+    description: isCzech
+      ? 'AI-powered marketplace engine pro automobilový trh. Web scraping agreguje data do MotherDuck Lakehouse, Claude API prioritizuje parametry (prestige, TCO, comfort) a generuje cenový index EV vs ICE v reálném čase.'
+      : 'AI-powered automotive marketplace engine. Web scraping aggregates market data into a MotherDuck Lakehouse, Claude API prioritizes vehicle parameters (prestige, TCO, comfort), and generates real-time EV vs ICE price indexing.',
+    stack: ['Python', 'DuckDB', 'Claude API', 'Web Scraping', 'Lakehouse'],
+    color: 'cyan' as const,
+    highlights: isCzech
+      ? ['Lakehouse architektura na MotherDuck', 'AI scoring model pro prioritizaci vozidel', 'Cenový index EV vs ICE v reálném čase']
+      : ['Lakehouse architecture on MotherDuck', 'AI scoring model for vehicle prioritization', 'Real-time EV vs ICE price indexing'],
+  },
+  {
+    id: 'sousedi',
+    title: isCzech ? 'Jak to mají sousedi' : 'Market Intelligence Engine',
+    subtitle: isCzech ? 'B2B market intelligence' : 'Real-time B2B market intelligence',
+    description: isCzech
+      ? 'Kompletní data harvesting systém pro sledování cen služeb a dostupnosti poskytovatelů v B2B sektorech. Geospatial analýza podle regionů v Česku, sektorové filtrování a automatizovaný konkurenční benchmarking pro řemeslníky a firmy.'
+      : 'Production-grade data harvesting system tracking service pricing and provider availability across B2B sectors in Czech Republic. Geospatial analysis by region, automated sector filtering, and competitive benchmarking for businesses and tradespeople.',
+    stack: ['Python', 'SQL', 'Data Harvesting', 'Geospatial'],
+    color: 'green' as const,
+    highlights: isCzech
+      ? ['Scraping a analýza trhu v reálném čase', 'Geospatial filtrování podle regionů', 'On-demand competitive analysis pro klienty']
+      : ['Real-time market scraping and analysis', 'Geospatial filtering by region', 'On-demand competitive analysis for clients'],
+  },
+  {
+    id: 'iiidm',
+    title: 'IIIDM',
+    subtitle: isCzech ? 'Full-stack apps & data pipelines' : 'Full-stack apps & data pipelines for global clients',
+    description: isCzech
+      ? 'Full-stack vývoj datově náročných aplikací pro mezinárodní konzultační firmu. Architektura Python backendů s interaktivními React frontendami, orchestrace automatizovaných měsíčních ETL pipeline a správa DuckDB/Supabase databází se 100% spolehlivostí.'
+      : 'Full-stack development of data-intensive applications for an international consulting firm. Architecting Python backends with interactive React frontends, orchestrating automated monthly ETL pipelines, and managing DuckDB/Supabase database systems with 100% data reliability.',
+    stack: ['Python', 'Supabase', 'DuckDB', 'Node.js', 'React'],
+    color: 'purple' as const,
+    highlights: isCzech
+      ? ['Automatizované měsíční pipeline', '100% spolehlivost dat', 'Full-stack vývoj pro mezinárodní klienty']
+      : ['Automated monthly update pipelines', '100% data reliability', 'Full-stack development for international clients'],
+    links: [
+      { label: 'iiidmic.com', url: 'https://iiidmic.com/' },
+      { label: 'vykonar.iiidmic.com', url: 'https://vykonar.iiidmic.com/' },
+    ],
+  },
+  {
+    id: 'websites',
+    title: isCzech ? 'Klientské weby' : 'Client Websites',
+    subtitle: isCzech ? 'Responzivní webové aplikace' : 'Responsive web applications',
+    description: isCzech
+      ? 'Návrh a vývoj moderních responzivních webových aplikací pro malé a střední firmy v Česku. Technická SEO optimalizace, vlastní branding, mobile-first přístup a vysoký výkon na Google PageSpeed.'
+      : 'Designing and developing modern responsive web applications for small and medium businesses. Technical SEO optimization, custom branding, mobile-first approach, and high Google PageSpeed performance scores.',
+    stack: ['React', 'TailwindCSS', 'Node.js', 'SEO'],
+    color: 'pink' as const,
+    highlights: isCzech
+      ? ['kurzystudiomirage.cz', 'kadernicehelena.cz']
+      : ['kurzystudiomirage.cz', 'kadernicehelena.cz'],
+    links: [
+      { label: 'Studio Mirage', url: 'https://kurzystudiomirage.cz/' },
+      { label: 'Kadeřnice Helena', url: 'https://www.kadernicehelena.cz/' },
+    ],
+  },
+];
+
+const techStack = {
+  Languages: ['Python', 'SQL', 'JavaScript', 'TypeScript'],
+  Data: ['DuckDB', 'Supabase', 'ETL Pipelines', 'Data Modeling'],
+  Cloud: ['Google Cloud Platform', 'MotherDuck', 'Streamlit'],
+  Frontend: ['React', 'Node.js', 'TailwindCSS', 'HTML/CSS'],
+  AI: ['Claude API', 'LLM Integration', 'Scoring Models'],
+  Tools: ['Git', 'REST APIs', 'Web Scraping', 'Automation'],
+};
+
+const experiences = [
+  {
+    title: isCzech ? 'Full-stack Developer & Data Systems Specialist' : 'Full-stack Developer & Data Systems Specialist',
+    company: 'IIIDM international consulting',
+    period: '2025 — Present',
+    description: isCzech
+      ? 'Architektura datově náročných full-stack aplikací, orchestrace automatizovaných ETL pipeline, správa DuckDB a Supabase databázových systémů pro mezinárodní klienty.'
+      : 'Architecting data-intensive full-stack applications, orchestrating automated ETL pipelines, managing DuckDB and Supabase database systems for international clients.',
+  },
+  {
+    title: isCzech ? 'Freelance Web Developer' : 'Freelance Web Developer',
+    company: isCzech ? 'OSVČ' : 'Self-employed',
+    period: '2025 — Present',
+    description: isCzech
+      ? 'Vývoj responzivních webových aplikací v React, Node.js a TailwindCSS. SEO optimalizace a mobile-first design pro malé a střední firmy.'
+      : 'Building responsive web applications with React, Node.js, and TailwindCSS. SEO optimization and mobile-first design for small and medium businesses.',
+  },
+  {
+    title: isCzech ? 'Zakladatelka & projektová administrátorka' : 'Founder & Project Administrator',
+    company: 'Valeolla consulting',
+    period: '2022 — 2025',
+    description: isCzech
+      ? 'Konzultační firma zaměřená na projektovou dokumentaci a administrativní infrastrukturu.'
+      : 'Consulting firm focused on project documentation and administrative infrastructure.',
+  },
+];
+
+const neonColors = {
+  cyan: { text: 'text-neon-cyan', bg: 'bg-neon-cyan/10', border: 'border-neon-cyan/20', glow: 'border-glow-cyan', shadow: 'shadow-glow-cyan' },
+  green: { text: 'text-neon-green', bg: 'bg-neon-green/10', border: 'border-neon-green/20', glow: 'border-glow-green', shadow: 'shadow-glow-green' },
+  purple: { text: 'text-neon-purple', bg: 'bg-neon-purple/10', border: 'border-neon-purple/20', glow: 'border-glow-purple', shadow: 'shadow-glow-purple' },
+  pink: { text: 'text-neon-pink', bg: 'bg-neon-pink/10', border: 'border-neon-pink/20', glow: 'border-glow-pink', shadow: 'shadow-glow-pink' },
+};
+
+// ─── Components ───
+
+function ProjectCard({ project }: { project: typeof projects[0] }) {
+  const c = neonColors[project.color];
+  return (
+    <div className={`glass-card rounded-xl p-6 md:p-8 ${c.glow} transition-all duration-300`}>
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h3 className={`font-mono font-bold text-xl md:text-2xl ${c.text}`}>{project.title}</h3>
+          <p className="text-text-secondary text-sm mt-1">{project.subtitle}</p>
+        </div>
+        <Terminal size={20} className={`${c.text} opacity-50`} />
+      </div>
+
+      <p className="text-text-primary/80 leading-relaxed mb-5 text-sm md:text-base">{project.description}</p>
+
+      <div className="flex flex-wrap gap-2 mb-5">
+        {project.stack.map(tech => (
+          <span key={tech} className={`neon-chip px-3 py-1 rounded text-xs font-mono ${c.bg} ${c.text} border ${c.border}`}>
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <ul className="space-y-1.5 mb-4">
+        {project.highlights.map((h, i) => (
+          <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
+            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full ${c.bg} ${c.text} flex-shrink-0`}>
+              <span className={`block w-1.5 h-1.5 rounded-full bg-current`} />
+            </span>
+            {h}
+          </li>
+        ))}
+      </ul>
+
+      {project.links && (
+        <div className="flex gap-3 mt-4 pt-4 border-t border-dark-border">
+          {project.links.map(link => (
+            <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer"
+              className={`text-sm font-mono ${c.text} hover:underline opacity-70 hover:opacity-100 transition-opacity`}>
+              {link.label} &rarr;
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CollapsibleExperience() {
   const [open, setOpen] = useState(false);
   return (
     <div>
       <button
-        onClick={() => setOpen((v: boolean) => !v)}
-        className="mb-8 px-6 py-3 border border-black dark:border-white rounded-full bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 font-semibold text-lg mx-auto block"
+        onClick={() => setOpen(v => !v)}
+        className="mb-8 px-6 py-3 rounded-lg bg-dark-elevated border border-dark-border hover:border-neon-cyan/30 transition-all duration-300 font-mono text-sm text-text-secondary hover:text-neon-cyan mx-auto flex items-center gap-2"
         aria-expanded={open}
-        aria-controls="experience-content"
       >
-        {open ? (isCzech ? 'Skrýt zkušenosti' : 'Hide Experience') : (isCzech ? 'Zobrazit zkušenosti' : 'Show Experience')}
+        <span className="text-neon-green">$</span>
+        {open ? (isCzech ? 'hide_experience()' : 'hide_experience()') : (isCzech ? 'show_experience()' : 'show_experience()')}
+        {open ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
       </button>
-      <div id="experience-content" className={`transition-all duration-500 overflow-hidden ${open ? 'max-h-[4000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`transition-all duration-500 overflow-hidden ${open ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
         {open && (
-          <>
-            <div className="space-y-16">
-              {isCzech ? (
-                <>
-                  <ExperienceCard
-                    title="Data analytička"
-                    company="IIIDM international consulting"
-                    period="07/2025 - současnost"
-                    description="Práce na kvalitě dat a automatizaci v mezinárodním prostředí. Python skripty pro validaci, API integrace a optimalizaci ETL. Vývoj Streamlit aplikací pro kontrolu dat a interní dashboardy."
-                    highlights={["Automatizace v Pythonu & API integrace","Vývoj dashboardů ve Streamlit","Projekty v oblasti realitní analytiky","Správa dat z více zdrojů"]}
-                  />
-                  <ExperienceCard
-                    title="Freelance web developerka"
-                    company="OSVČ"
-                    period="01/2025 - současnost"
-                    description="Návrh a tvorba responzivních webů pro malé firmy s využitím moderních technologií. Důraz na čistý UX a udržitelnost kódu."
-                    highlights={["Vývoj v Node.js & TailwindCSS","Individuální digitální řešení","Design orientovaný na klienta"]}
-                  />
-                  <ExperienceCard
-                    title="Zakladatelka & projektová administrátorka"
-                    company="Valeolla consulting"
-                    period="05/2022 - 10/2025"
-                    description="Založení a vedení konzultační firmy zaměřené na administrativní podporu a dotační dokumentaci pro veřejný i soukromý sektor."
-                    highlights={["Řízení provozu firmy","Koordinace projektů","Konzultace pro veřejný i soukromý sektor"]}
-                  />
-                  <ExperienceCard
-                    title="Manažerka obchodního týmu"
-                    company="DoxoLogic - Cybersecurity Solutions"
-                    period="12/2022 - 12/2023"
-                    description="Vedení týmu 4 obchodníků zaměřených na kybernetickou bezpečnost a IT infrastrukturu. 20% měsíční zlepšení výkonu díky datově řízeným strategiím."
-                    highlights={["Vedení týmu & sledování výkonu","Analýza konverzních metrik","Překlad technických řešení","20% zlepšení výkonu"]}
-                  />
-                  <ExperienceCard
-                    title="Obchodní zástupkyně"
-                    company="Bohemia Energy"
-                    period="07/2020 - 10/2021"
-                    description="Budování portfolia 200+ aktivních klientů s průměrnou konverzí 80 %. Pravidelné překonávání měsíčních cílů o 15–25 % díky efektivní komunikaci."
-                    highlights={["80% konverzní úspěšnost","Portfolio 200+ klientů","Trvalé překonávání cílů","Správa vztahů s klienty"]}
-                  />
-                </>
-              ) : (
-                <>
-                  <ExperienceCard
-                    title="Data Analyst"
-                    company="IIIDM international consulting"
-                    period="07/2025 - Present"
-                    description="Working on data quality and automation in an international environment. Python scripts for validation, API integration, and ETL optimization. Developing Streamlit apps for data review and internal dashboards."
-                    highlights={["Python automation & API integration","Streamlit dashboard development","Real estate analytics projects","Managing data from multiple sources"]}
-                  />
-                  <ExperienceCard
-                    title="Freelance Web Developer"
-                    company="Self-employed"
-                    period="01/2025 - Present"
-                    description="Designing and building responsive websites for small businesses using modern technologies. Focus on clean UX and sustainable code."
-                    highlights={["Node.js & TailwindCSS development","Custom digital solutions","Client-oriented design"]}
-                  />
-                  <ExperienceCard
-                    title="Founder & Project Administrator"
-                    company="Valeolla consulting"
-                    period="05/2022 - 10/2025"
-                    description="Founded and managed a consulting company focused on administrative support and grant documentation for public and private sectors."
-                    highlights={["Company operations management","Project coordination","Consulting for public & private sector"]}
-                  />
-                  <ExperienceCard
-                    title="Sales Team Manager"
-                    company="DoxoLogic - Cybersecurity Solutions"
-                    period="12/2022 - 12/2023"
-                    description="Led a team of 4 salespeople focused on cybersecurity and IT infrastructure. Achieved 20% monthly performance improvement through data-driven strategies."
-                    highlights={["Team leadership & performance tracking","Conversion metrics analysis","Translating technical solutions","20% performance improvement"]}
-                  />
-                  <ExperienceCard
-                    title="Sales Representative"
-                    company="Bohemia Energy"
-                    period="07/2020 - 10/2021"
-                    description="Built a portfolio of 200+ active clients with an average conversion rate of 80%. Consistently exceeded monthly targets by 15–25% through effective communication."
-                    highlights={["80% conversion success","200+ client portfolio","Consistently exceeding targets","Client relationship management"]}
-                  />
-                </>
-              )}
-            </div>
-          </>
+          <div className="space-y-6">
+            {experiences.map((exp, idx) => {
+              const colors = ['cyan', 'green', 'purple'] as const;
+              const c = neonColors[colors[idx % 3]];
+              return (
+                <div key={idx} className="glass-card rounded-lg p-5 flex gap-4">
+                  <div className="flex flex-col items-center pt-1">
+                    <div className={`w-3 h-3 rounded-full ${c.bg} border ${c.border}`}>
+                      <div className={`w-3 h-3 rounded-full bg-current ${c.text}`} />
+                    </div>
+                    {idx < experiences.length - 1 && <div className="w-px flex-1 bg-dark-border mt-2" />}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-mono font-semibold text-text-primary">{exp.title}</h4>
+                    <p className={`text-sm ${c.text} opacity-70`}>{exp.company}</p>
+                    <p className="text-xs text-text-secondary mt-1 font-mono">{exp.period}</p>
+                    <p className="text-sm text-text-secondary mt-2 leading-relaxed">{exp.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </div>
   );
 }
 
-const PortfolioCard = ({ title, description, url, isCzech }: { title: string; description: string; url: string; isCzech: boolean }) => (
-  <div className="flex-1 min-w-[260px] max-w-[340px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md p-6 flex flex-col justify-between">
-    <div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{title}</h3>
-      <p className="text-gray-700 dark:text-gray-300 mb-6 text-sm">{description}</p>
-    </div>
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-auto inline-block px-6 py-2 border border-black dark:border-white rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-all duration-300 text-sm font-medium text-center"
-    >
-      {isCzech ? 'Zobrazit projekt' : 'View Project'}
-    </a>
-  </div>
-);
-
-import { Mail, Github } from 'lucide-react';
-
+// ─── Main App ───
 function App() {
   const [scrolled, setScrolled] = useState(false);
-  const [showPortfolio, setShowPortfolio] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -137,334 +266,325 @@ function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Detekce jazyka podle browseru (region/VPN)
-  const isCzech = typeof navigator !== 'undefined' && navigator.language.startsWith('cs');
-
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-500">
+    <div className="min-h-screen w-full bg-dark-primary text-text-primary font-body relative overflow-x-hidden">
+      <GridBackground />
 
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-lg shadow-sm' : 'bg-transparent'
-        }`}>
-          <div className="max-w-7xl mx-auto px-6 py-6 flex justify-end items-center">
+      {/* ══════ NAV ══════ */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'glass shadow-lg' : 'bg-transparent'
+      }`}>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <button onClick={() => scrollToSection('hero')} className="flex items-center gap-2 group">
+            <TechFoxIcon size={24} className="group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.5)] transition-all" />
+            <span className="font-mono font-bold text-sm text-text-primary hidden sm:inline">
+              marcela<span className="text-neon-cyan">.fullstackdev</span>
+            </span>
+          </button>
+
+          <div className="flex items-center gap-1 sm:gap-2">
+            {[
+              { id: 'about', label: isCzech ? 'about()' : 'about()' },
+              { id: 'projects', label: 'projects()' },
+              { id: 'stack', label: 'stack()' },
+              { id: 'contact', label: 'connect()' },
+            ].map(item => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="px-2 sm:px-3 py-1.5 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors duration-300"
+              >
+                {item.label}
+              </button>
+            ))}
             <a
               href="https://buymeacoffee.com/marcelarezd"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 ml-4 px-3 py-2 rounded-full hover:shadow-lg transition-all group"
-              title={isCzech ? 'Podporuje Apple Pay, Google Pay, karty a další.' : 'Supports Apple Pay, Google Pay, cards and more.'}
-              style={{ background: 'rgba(255,221,0,0.08)' }}
+              className="flex items-center gap-2 px-2 sm:px-3 py-1.5 rounded border border-dark-border hover:border-neon-green/30 text-xs font-mono text-text-secondary hover:text-neon-green transition-all"
             >
-              <svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block align-middle group-hover:scale-110 transition-transform duration-200" style={{ verticalAlign: 'middle', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <rect width="512" height="512" rx="256" fill="#FFDD00" />
-                <path d="M160 320c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V224H160v96z" fill="#fff" />
-                <path d="M208 224v-24c0-26.5 21.5-48 48-48s48 21.5 48 48v24" stroke="#222" strokeWidth="16" strokeLinecap="round" />
-              </svg>
-              <span className="hidden md:inline text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-black dark:group-hover:text-yellow-900 transition-colors duration-200">
-                {isCzech ? 'Na kávu' : 'Support with coffee'}
-              </span>
-              <span className="sr-only">Buy Me a Coffee</span>
+              <span>&#9749;</span> <span className="hidden md:inline">coffee</span>
             </a>
           </div>
-        </nav>
-
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <div
-              className="absolute inset-0 opacity-40 dark:opacity-60"
-              style={{
-                backgroundImage: 'url(/assets/20251116_2042_Emerging Data Elegance_simple_compose_01ka7312jveearz8js6wp07kbn.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-
-          <div className="relative z-10 text-center px-6 max-w-4xl">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 animate-fade-in">
-              {isCzech ? 'Marcela Řezková' : 'Marcela Rezkova'}
-            </h1>
-            <p className="text-xl md:text-2xl font-light text-gray-600 dark:text-gray-400 mb-12 tracking-wide">
-              Data Science · Full stack developer · Web Developer
-            </p>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase"
-            >
-              {isCzech ? 'Spojit se' : 'Contact me'}
-            </button>
-            <div className="mt-12">
-              <button
-                className="px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase mb-8"
-                onClick={() => setShowPortfolio((v: boolean) => !v)}
-              >
-                {isCzech ? 'Portfolio' : 'Portfolio'}
-              </button>
-              {showPortfolio && (
-                <div>
-                  <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
-                    <PortfolioCard
-                      title={isCzech ? 'Studio Mirage' : 'Studio Mirage'}
-                      description={isCzech
-                        ? 'Web pro vzdělávací studio zaměřené na kurzy, workshopy a rozvoj dovedností. Moderní design, optimalizace pro SEO, responzivní rozhraní.'
-                        : 'Website for an educational studio focused on courses, workshops, and skill development. Modern design, SEO optimization, responsive UI.'}
-                      url="https://kurzystudiomirage.cz/"
-                      isCzech={isCzech}
-                    />
-                    <PortfolioCard
-                      title={isCzech ? 'Kadeřnice Helena' : 'Helena Hairdresser'}
-                      description={isCzech
-                        ? 'Prezentace služeb kadeřnictví s důrazem na jednoduchost, rychlost a přehlednost. Vlastní branding, optimalizace pro mobilní zařízení.'
-                        : 'Showcase for a hairdresser’s services, focused on simplicity, speed, and clarity. Custom branding, mobile optimization.'}
-                      url="https://www.kadernicehelena.cz/"
-                      isCzech={isCzech}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-              {/* Odkaz na kávu bude v patičce */}
-
-          </div>
-        </section>
-
-        {/* <section id="letter" className="py-32 px-6 bg-gray-50 dark:bg-gray-950">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-16 text-center">
-              {isCzech ? 'Pár slov o mě' : 'A few words about me'}
-            </h2>
-
-            <div className="space-y-8 text-lg md:text-xl leading-relaxed font-light text-gray-700 dark:text-gray-300">
-              {isCzech ? (
-                <>
-                  <p>
-                  Datově orientovaný profil zaměřený na průnik byznysového myšlení, analytiky a vývoje softwaru.
-                  Pohodlný v agilním prostředí, se schopností převzít odpovědnost a doručovat výsledky i samostatně.
-                  Komplexita se převádí do struktury, protože výsledky jsou měřitelné.
-                  </p>
-
-                  <p>
-                  Nekonvenční profesní cesta formovaná prodejem, provozem a rozvojem byznysu.
-                  Tento základ přináší hluboké porozumění reálným potřebám firem, fungování týmů a rozhodovacím procesům.
-                  Přirozená zvědavost vedla k technologiím, systémům a datům, od porozumění výstupům až po jejich technickou realizaci.
-                  </p>
-
-                  <p>
-                  Aktuální fokus spojuje byznysový kontext s technickou exekucí.
-                  Procesy jsou automatizovány pomocí Pythonu, datové sady analyzovány v DuckDB a SQL
-                  a výstupy prezentovány prostřednictvím aplikací ve Streamlitu a dashboardů postavených v Reactu.
-                  Prioritou zůstává praktický dopad: přehlednost, efektivita a škálovatelná řešení.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>
-                  A data-driven profile focused on the intersection of business thinking, analytics, and software development.
-                  Comfortable in agile environments, with the ability to take ownership and deliver independently when needed.
-                  Complexity is translated into structure, because outcomes are measurable.
-                  </p>
-
-                  <p>
-                  An unconventional background shaped through sales, operations, and business development.
-                  This foundation brings a strong understanding of real business needs, team dynamics, and decision-making processes.
-                  Curiosity naturally led toward technology, systems, and data, from understanding outputs to building them.
-                  </p>
-
-                  <p>
-                  Current focus lies in connecting business context with technical execution.
-                  Processes are automated using Python, datasets analyzed with DuckDB and SQL, and insights delivered through Streamlit applications and React-based dashboards.
-                  The priority remains practical impact: clarity, efficiency, and scalable solutions.
-                  </p>
-                </>
-              )}
-            </div>
-          </div>
-        </section> */}
-
-        <section id="experience" className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <CollapsibleExperience isCzech={isCzech} />
-          </div>
-        </section>
-
-        <section id="skills" className="py-32 px-6 bg-gray-50 dark:bg-gray-950">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-20 text-center">
-              Skills Set
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-              <SkillCategory
-                title="Data & Analytics"
-                skills={[
-                  { name: 'Python', level: 'Upper-Intermediate' },
-                  { name: 'SQL', level: 'Upper-Intermediate' },
-                  { name: 'Data Analysis', level: 'Upper-Intermediate' },
-                  { name: 'DuckDB', level: 'Upper-Intermediate' },
-                  { name: 'Supabase', level: 'Intermediate-Plus' },
-                  { name: 'Streamlit', level: 'Advanced' },
-                  { name: 'Data Visualization', level: 'Intermediate-Plus' },
-                  { name: 'ETL Pipelines', level: 'Intermediate-Plus' }
-                ]}
-              />
-
-              <SkillCategory
-                title="Development"
-                skills={[
-                  { name: 'Web Development', level: 'Intermediate' },
-                  { name: 'HTML/CSS/JavaScript/React', level: 'Intermediate' },
-                  { name: 'Node.js', level: 'Intermediate' },
-                  { name: 'TailwindCSS', level: 'Intermediate' },
-                  { name: 'API Integration', level: 'Upper-Intermediate' },
-                  { name: 'Automation', level: 'Upper-Intermediate' },
-                  { name: 'REST APIs', level: 'Intermediate-Plus' },
-                  { name: 'Git', level: 'Intermediate' }
-                ]}
-              />
-
-              <SkillCategory
-                title="Business"
-                skills={[
-                  { name: 'Business Development', level: 'Intermediate' },
-                  { name: 'Process Optimization', level: 'Intermediate-Plus' },
-                  { name: 'Analytical Thinking', level: 'Advanced' },
-                  { name: 'Agile Methodologies', level: 'Intermediate' },
-                ]}
-              />
-
-              {/* <SkillCategory
-                title="Branding & Media Skills"
-                skills={[
-                  { name: 'Personal Branding', level: 'Intermediate-Plus' },
-                  { name: 'Content Strategy', level: 'Intermediate-Plus' },
-                  { name: 'Creative Direction', level: 'Advanced' },
-                ]}
-              /> */}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="py-32 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-16">
-              {isCzech ? 'Spojme se' : "Let's Connect"}
-            </h2>
-
-            <p className="text-xl font-light text-gray-600 dark:text-gray-400 mb-12 leading-relaxed">
-              {isCzech
-                ? "Ať už hledáte datovou analytičku, která je otevřena businessu, vývojářku, nebo si chcete jen popovídat o nápadech ráda se s vámi spojím."
-                : "Whether you're looking for a data analyst who understands business, a developer, or simply want to discuss ideas. I'd love to hear from you."}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <a
-                href="tel:734424465"
-                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
-              >
-                {/* Phone SVG icon */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z"/></svg>
-                {isCzech ? 'Zavolejte' : 'Call'}
-              </a>
-              <a
-                href="mailto:marcelarezkova98@gmail.com"
-                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
-              >
-                <Mail size={20} />
-                {isCzech ? 'Email' : 'Email'}
-              </a>
-
-              <a
-                href="https://github.com/marcelrezkova"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
-              >
-                <Github size={20} />
-                GitHub
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/marcelrezkova/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
-              >
-                {/* LinkedIn SVG ikona */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.599 2 3.599 4.594v5.602z"/></svg>
-                LinkedIn
-              </a>
-              <a
-                href="/MarcelaRezkova_Resume.pdf"
-                download
-                className="flex items-center gap-3 px-8 py-4 border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-sm tracking-widest uppercase w-full sm:w-auto justify-center"
-              >
-                {/* Resume SVG ikona */}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z"/></svg>
-                Resume
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <footer className="py-12 px-6 border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-sm font-light text-gray-500 tracking-wide">
-              © 2025 {isCzech ? 'Marcela Řezková' : 'Marcela Rezkova'}
-            </p>
-          </div>
-        </footer>
-    </div>
-  );
-}
-
-function ExperienceCard({ title, company, period, description, highlights }: {
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-  highlights: string[];
-}) {
-  return (
-    <div className="group">
-      <div className="border-l-2 border-gray-300 dark:border-gray-700 pl-8 pb-8 hover:border-black dark:hover:border-white transition-colors">
-        <div className="mb-4">
-          <h3 className="text-2xl font-normal tracking-tight mb-2">{title}</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-400 font-light">{company}</p>
-          <p className="text-sm text-gray-500 dark:text-gray-500 font-light tracking-wide mt-1">{period}</p>
         </div>
+      </nav>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{description}</p>
+      {/* ══════ HERO ══════ */}
+      <header>
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Glow orbs */}
+        <GlowOrb color="rgba(0, 255, 255, 0.15)" size={400} top="-10%" right="-5%" />
+        <GlowOrb color="rgba(191, 90, 242, 0.1)" size={300} bottom="10%" left="-10%" />
 
-        <ul className="space-y-2">
-          {highlights.map((highlight, idx) => (
-            <li key={idx} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
-              <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-600 flex-shrink-0" />
-              {highlight}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Text side */}
+            <div className="flex-1 text-center lg:text-left">
+              <p className="font-mono text-sm text-neon-green mb-4 animate-fade-in">
+                <span className="text-text-secondary">&gt;</span> marcela.init()
+              </p>
 
-type Skill = { name: string; level: string };
-function SkillCategory({ title, skills }: { title: string; skills: Skill[] }) {
-  return (
-    <div>
-      <h3 className="text-xl font-normal tracking-tight mb-6 border-b border-gray-300 dark:border-gray-700 pb-3">
-        {title}
-      </h3>
-      <div className="flex flex-wrap gap-3">
-        {skills.map((skill, idx) => (
-          <span
-            key={idx}
-            className="px-4 py-2 text-sm border border-gray-300 dark:border-gray-700 hover:border-black dark:hover:border-white transition-colors"
-            title={skill.level}
-          >
-            {skill.name}
-            <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">{skill.level}</span>
-          </span>
-        ))}
-      </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tight mb-6 leading-[1.1]">
+                <TypingText
+                  text={isCzech ? 'Stavím datové systémy, které myslí.' : 'I build data systems that think.'}
+                  className="text-glow-cyan"
+                />
+              </h1>
+
+              <p className="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-xl animate-fade-in stagger-2" style={{ animationFillMode: 'both' }}>
+                <span className="text-text-primary font-medium">Technical Data Engineer</span>
+                <span className="text-neon-cyan mx-2">&</span>
+                <span className="text-text-primary font-medium">Full-stack Developer</span>
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-10 justify-center lg:justify-start animate-fade-in stagger-3" style={{ animationFillMode: 'both' }}>
+                {['Python', 'SQL', 'DuckDB', 'Node.js', 'GCP', 'Claude API'].map((tech, i) => {
+                  const colors = ['text-neon-cyan', 'text-neon-green', 'text-neon-purple', 'text-neon-cyan', 'text-neon-green', 'text-neon-pink'];
+                  return (
+                    <span key={tech} className={`neon-chip px-3 py-1 rounded text-xs font-mono border border-dark-border hover:border-dark-border-glow ${colors[i]} bg-dark-elevated`}>
+                      {tech}
+                    </span>
+                  );
+                })}
+              </div>
+
+              <div className="flex gap-4 justify-center lg:justify-start animate-fade-in stagger-4" style={{ animationFillMode: 'both' }}>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="px-6 py-3 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-sm hover:bg-neon-cyan/20 hover:shadow-glow-cyan transition-all duration-300"
+                >
+                  &gt; connect()
+                </button>
+                <button
+                  onClick={() => scrollToSection('projects')}
+                  className="px-6 py-3 rounded-lg bg-dark-elevated border border-dark-border text-text-secondary font-mono text-sm hover:border-dark-border-glow hover:text-text-primary transition-all duration-300"
+                >
+                  &gt; view_work()
+                </button>
+              </div>
+            </div>
+
+            {/* Profile + Fox side */}
+            <div className="flex-shrink-0 relative animate-fade-in stagger-3" style={{ animationFillMode: 'both' }}>
+              <div className="profile-glow w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden">
+                <img src="/profile.png" alt="Marcela Rezkova — Technical Data Engineer and Full-stack Developer based in Czech Republic" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute -bottom-6 -right-6">
+                <TechFox size={60} animated color="#00ffff" className="animate-float" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </header>
+
+      <main>
+      <SectionDivider />
+
+      {/* ══════ ABOUT ══════ */}
+      <section id="about" className="py-24 px-6 relative">
+        <GlowOrb color="rgba(57, 255, 20, 0.08)" size={250} top="20%" left="-5%" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <ScrollReveal>
+            <p className="font-mono text-sm text-neon-green mb-3">
+              <span className="text-text-secondary">&gt;</span> about.read()
+            </p>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold mb-12">
+              {isCzech ? 'Data Engineering, AI & Full-stack Development' : 'Data Engineering, AI & Full-stack Development'}
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Database size={24} />,
+                title: 'Data Engineering',
+                description: isCzech
+                  ? 'Návrh a orchestrace ETL pipelines, lakehouse architektura na MotherDuck a DuckDB, správa databází v Supabase. Automatizované datové pipeline se 100% spolehlivostí pro globální klienty.'
+                  : 'Designing and orchestrating production ETL pipelines, lakehouse architecture on MotherDuck and DuckDB, database management with Supabase. Automated data pipelines with 100% reliability for global clients.',
+                color: 'cyan' as const,
+              },
+              {
+                icon: <Brain size={24} />,
+                title: 'AI Integration',
+                description: isCzech
+                  ? 'Integrace LLM modelů přes Claude API a Anthropic SDK. Vývoj AI scoring modelů, konverzačních rozhraní a inteligentních nástrojů pro automatizaci business rozhodování.'
+                  : 'LLM integration via Claude API and Anthropic SDK. Building AI-powered scoring models, conversational interfaces, and intelligent tools that automate business decision-making.',
+                color: 'purple' as const,
+              },
+              {
+                icon: <Code size={24} />,
+                title: 'Full-stack Development',
+                description: isCzech
+                  ? 'Kompletní full-stack vývoj v React, Node.js a TailwindCSS. Od Python backendů a REST API po responzivní webové aplikace optimalizované pro výkon a SEO.'
+                  : 'End-to-end full-stack development with React, Node.js, and TailwindCSS. From Python backends and REST APIs to responsive, performance-optimized web applications.',
+                color: 'green' as const,
+              },
+            ].map(card => {
+              const c = neonColors[card.color];
+              return (
+                <ScrollReveal key={card.title}>
+                  <div className={`glass-card rounded-xl p-6 h-full ${c.glow}`}>
+                    <div className={`${c.text} mb-4`}>{card.icon}</div>
+                    <h3 className="font-mono font-semibold text-lg mb-3 text-text-primary">{card.title}</h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">{card.description}</p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ══════ PROJECTS ══════ */}
+      <section id="projects" className="py-24 px-6 relative">
+        <GlowOrb color="rgba(0, 255, 255, 0.08)" size={300} top="10%" right="-10%" />
+        <GlowOrb color="rgba(191, 90, 242, 0.06)" size={200} bottom="20%" left="5%" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <ScrollReveal>
+            <p className="font-mono text-sm text-neon-green mb-3">
+              <span className="text-text-secondary">&gt;</span> projects.list()
+            </p>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold mb-4">
+              {isCzech ? 'Power Projects' : 'Power Projects'}
+            </h2>
+            <p className="text-text-secondary mb-12 max-w-xl">
+              {isCzech
+                ? 'AI-powered datové systémy, market intelligence a full-stack aplikace. Reálné problémy, měřitelné výsledky.'
+                : 'AI-powered data systems, market intelligence engines, and full-stack applications. Real problems, measurable results.'}
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map(project => (
+              <ScrollReveal key={project.id}>
+                <ProjectCard project={project} />
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ══════ TECH STACK ══════ */}
+      <section id="stack" className="py-24 px-6 relative">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <ScrollReveal>
+            <p className="font-mono text-sm text-neon-green mb-3">
+              <span className="text-text-secondary">&gt;</span> stack.inspect()
+            </p>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold mb-12">
+              Tech Stack
+            </h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(techStack).map(([category, techs]) => {
+              const colorMap: Record<string, keyof typeof neonColors> = {
+                Languages: 'cyan', Data: 'green', Cloud: 'purple',
+                Frontend: 'pink', AI: 'cyan', Tools: 'green',
+              };
+              const c = neonColors[colorMap[category] || 'cyan'];
+              return (
+                <ScrollReveal key={category}>
+                  <div className="glass-card rounded-xl p-5">
+                    <h3 className={`font-mono font-semibold text-sm mb-4 ${c.text} uppercase tracking-wider`}>{category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {techs.map(tech => (
+                        <span key={tech} className={`neon-chip px-3 py-1.5 rounded text-xs font-mono ${c.bg} ${c.text} border ${c.border}`}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ══════ EXPERIENCE ══════ */}
+      <section id="experience" className="py-24 px-6 relative">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <ScrollReveal>
+            <p className="font-mono text-sm text-neon-green mb-3">
+              <span className="text-text-secondary">&gt;</span> experience.log()
+            </p>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold mb-12">
+              {isCzech ? 'Zkušenosti' : 'Experience'}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal>
+            <CollapsibleExperience />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ══════ CONTACT ══════ */}
+      <section id="contact" className="py-24 px-6 relative">
+        <GlowOrb color="rgba(0, 255, 255, 0.1)" size={300} top="0%" right="10%" />
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <ScrollReveal>
+            <p className="font-mono text-sm text-neon-green mb-3">
+              <span className="text-text-secondary">&gt;</span> marcela.connect()
+            </p>
+            <h2 className="text-3xl md:text-4xl font-mono font-bold mb-6">
+              {isCzech ? "Pojďme spolupracovat." : "Let's build something that matters."}
+            </h2>
+            <p className="text-text-secondary mb-12 max-w-lg mx-auto">
+              {isCzech
+                ? 'Hledáte data engineera pro ETL pipelines a lakehouse architekturu, full-stack developera pro webové aplikace, nebo partnera pro AI integraci? Ozvěte se.'
+                : "Need a data engineer for ETL pipelines and lakehouse architecture, a full-stack developer for web applications, or a partner for AI integration? Let's talk."}
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a href="tel:+420734424465" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-cyan font-mono text-sm text-text-secondary hover:text-neon-cyan transition-all">
+                <Phone size={16} /> <span className="text-neon-green">$</span> {isCzech ? 'call' : 'call'}
+              </a>
+              <a href="mailto:marcelarezkova98@icloud.com" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-green font-mono text-sm text-text-secondary hover:text-neon-green transition-all">
+                <Mail size={16} /> <span className="text-neon-green">$</span> email
+              </a>
+              <a href="https://github.com/marcelrezkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-purple font-mono text-sm text-text-secondary hover:text-neon-purple transition-all">
+                <Github size={16} /> <span className="text-neon-green">$</span> github
+              </a>
+              <a href="https://www.linkedin.com/in/marcelrezkova/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-cyan font-mono text-sm text-text-secondary hover:text-neon-cyan transition-all">
+                <Linkedin size={16} /> <span className="text-neon-green">$</span> linkedin
+              </a>
+              <a href="/MarcelaRezkovaResume.pdf" download className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-pink font-mono text-sm text-text-secondary hover:text-neon-pink transition-all">
+                <Download size={16} /> <span className="text-neon-green">$</span> resume
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      </main>
+      <SectionDivider />
+
+      {/* ══════ FOOTER ══════ */}
+      <footer className="py-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <TechFoxIcon size={20} color="#00ffff" />
+            <p className="text-xs text-text-secondary font-mono">
+              &copy; 2025 Marcela Rezkova
+            </p>
+          </div>
+          <p className="text-xs text-text-secondary font-mono opacity-50">
+            Built with React + caffeine
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

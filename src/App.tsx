@@ -353,7 +353,7 @@ function App() {
         <GlowOrb color="rgba(0, 255, 255, 0.15)" size={400} top="-10%" right="-5%" />
         <GlowOrb color="rgba(191, 90, 242, 0.1)" size={300} bottom="10%" left="-10%" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 w-full">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-32 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Text side */}
             <div className="flex-1 text-center lg:text-left">
@@ -402,12 +402,12 @@ function App() {
             </div>
 
             {/* Profile + Fox side */}
-            <div className="flex-shrink-0 relative animate-fade-in stagger-3" style={{ animationFillMode: 'both' }}>
-              <div className="profile-glow w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden">
+            <div className="flex-shrink-0 relative animate-fade-in stagger-3 mb-8 lg:mb-0" style={{ animationFillMode: 'both' }}>
+              <div className="profile-glow w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden">
                 <img src="/profile.png" alt="Marcela Rezkova — Technical Data Engineer and Full-stack Developer based in Czech Republic" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -bottom-6 -right-6">
-                <TechFox size={60} animated color="#00ffff" className="animate-float" />
+              <div className="absolute -bottom-5 -right-5">
+                <TechFox size={50} animated color="#00ffff" className="animate-float" />
               </div>
             </div>
           </div>
@@ -419,7 +419,7 @@ function App() {
       <SectionDivider />
 
       {/* ══════ ABOUT ══════ */}
-      <section id="about" className="py-24 px-6 relative">
+      <section id="about" className="py-16 md:py-24 px-6 relative">
         <GlowOrb color="rgba(57, 255, 20, 0.08)" size={250} top="20%" left="-5%" />
         <div className="max-w-6xl mx-auto relative z-10">
           <ScrollReveal>
@@ -476,7 +476,7 @@ function App() {
       <SectionDivider />
 
       {/* ══════ PROJECTS ══════ */}
-      <section id="projects" className="py-24 px-6 relative">
+      <section id="projects" className="py-16 md:py-24 px-6 relative">
         <GlowOrb color="rgba(0, 255, 255, 0.08)" size={300} top="10%" right="-10%" />
         <GlowOrb color="rgba(191, 90, 242, 0.06)" size={200} bottom="20%" left="5%" />
         <div className="max-w-6xl mx-auto relative z-10">
@@ -507,7 +507,7 @@ function App() {
       <SectionDivider />
 
       {/* ══════ TECH STACK ══════ */}
-      <section id="stack" className="py-24 px-6 relative">
+      <section id="stack" className="py-16 md:py-24 px-6 relative">
         <div className="max-w-6xl mx-auto relative z-10">
           <ScrollReveal>
             <p className="font-mono text-sm text-neon-green mb-3">
@@ -547,7 +547,7 @@ function App() {
       <SectionDivider />
 
       {/* ══════ EXPERIENCE ══════ */}
-      <section id="experience" className="py-24 px-6 relative">
+      <section id="experience" className="py-16 md:py-24 px-6 relative">
         <div className="max-w-4xl mx-auto relative z-10">
           <ScrollReveal>
             <p className="font-mono text-sm text-neon-green mb-3">
@@ -566,7 +566,7 @@ function App() {
       <SectionDivider />
 
       {/* ══════ CONTACT ══════ */}
-      <section id="contact" className="py-24 px-6 relative">
+      <section id="contact" className="py-16 md:py-24 px-6 relative">
         <GlowOrb color="rgba(0, 255, 255, 0.1)" size={300} top="0%" right="10%" />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <ScrollReveal>

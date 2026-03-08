@@ -294,13 +294,14 @@ function App() {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-2">
             {navItems.map(item => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                href={`#${item.id}`}
+                onClick={e => { e.preventDefault(); scrollToSection(item.id); }}
                 className="px-3 py-1.5 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors duration-300"
               >
                 {item.label}
-              </button>
+              </a>
             ))}
             <a
               href="https://buymeacoffee.com/marcelarezd"
@@ -408,18 +409,20 @@ function App() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-fade-in stagger-4" style={{ animationFillMode: 'both' }}>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-sm hover:bg-neon-cyan/20 hover:shadow-glow-cyan transition-all duration-300"
+                <a
+                  href="#contact"
+                  onClick={e => { e.preventDefault(); scrollToSection('contact'); }}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-sm hover:bg-neon-cyan/20 hover:shadow-glow-cyan transition-all duration-300 text-center"
                 >
                   &gt; connect()
-                </button>
-                <button
-                  onClick={() => scrollToSection('projects')}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-dark-elevated border border-dark-border text-text-secondary font-mono text-sm hover:border-dark-border-glow hover:text-text-primary transition-all duration-300"
+                </a>
+                <a
+                  href="#projects"
+                  onClick={e => { e.preventDefault(); scrollToSection('projects'); }}
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-dark-elevated border border-dark-border text-text-secondary font-mono text-sm hover:border-dark-border-glow hover:text-text-primary transition-all duration-300 text-center"
                 >
                   &gt; view_work()
-                </button>
+                </a>
               </div>
             </div>
 

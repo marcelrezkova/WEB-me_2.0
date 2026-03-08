@@ -407,16 +407,16 @@ function App() {
                 })}
               </div>
 
-              <div className="flex gap-4 justify-center lg:justify-start animate-fade-in stagger-4" style={{ animationFillMode: 'both' }}>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-fade-in stagger-4" style={{ animationFillMode: 'both' }}>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="px-6 py-3 rounded-lg bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-sm hover:bg-neon-cyan/20 hover:shadow-glow-cyan transition-all duration-300"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-sm hover:bg-neon-cyan/20 hover:shadow-glow-cyan transition-all duration-300"
                 >
                   &gt; connect()
                 </button>
                 <button
                   onClick={() => scrollToSection('projects')}
-                  className="px-6 py-3 rounded-lg bg-dark-elevated border border-dark-border text-text-secondary font-mono text-sm hover:border-dark-border-glow hover:text-text-primary transition-all duration-300"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-dark-elevated border border-dark-border text-text-secondary font-mono text-sm hover:border-dark-border-glow hover:text-text-primary transition-all duration-300"
                 >
                   &gt; view_work()
                 </button>

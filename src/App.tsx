@@ -108,11 +108,12 @@ const projects = [
     stack: ['React', 'TailwindCSS', 'Node.js', 'SEO'],
     color: 'pink' as const,
     highlights: isCzech
-      ? ['kurzystudiomirage.cz', 'kadernicehelena.cz']
-      : ['kurzystudiomirage.cz', 'kadernicehelena.cz'],
+      ? ['kurzystudiomirage.cz', 'kadernicehelena.cz', 'smooth-development.com']
+      : ['kurzystudiomirage.cz', 'kadernicehelena.cz', 'smooth-development.com'],
     links: [
       { label: 'Studio Mirage', url: 'https://kurzystudiomirage.cz/' },
       { label: 'Kadeřnice Helena', url: 'https://www.kadernicehelena.cz/' },
+      { label: 'Smooth Development', url: 'https://smooth-development.com/' },
     ],
   },
 ];

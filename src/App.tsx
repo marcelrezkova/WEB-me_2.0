@@ -551,9 +551,12 @@ function App() {
               <a href="tel:+420734424465" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-cyan font-mono text-sm text-text-secondary hover:text-neon-cyan transition-all">
                 <Phone size={16} /> <span className="text-neon-green">$</span> {isCzech ? 'call' : 'call'}
               </a>
-              <a href="mailto:marcelarezkova98@icloud.com" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-green font-mono text-sm text-text-secondary hover:text-neon-green transition-all">
-                <Mail size={16} /> <span className="text-neon-green">$</span> email
-              </a>
+              <button
+                onClick={() => { const u = 'marcelarezkova98'; const d = 'icloud.com'; window.location.href = `mailto:${u}@${d}`; }}
+                className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-green font-mono text-sm text-text-secondary hover:text-neon-green transition-all"
+              >
+                <Mail size={16} /> <span className="text-neon-green">$</span> {isCzech ? 'napište mi' : 'email'}
+              </button>
               <a href="https://github.com/marcelrezkova" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-purple font-mono text-sm text-text-secondary hover:text-neon-purple transition-all">
                 <Github size={16} /> <span className="text-neon-green">$</span> github
               </a>

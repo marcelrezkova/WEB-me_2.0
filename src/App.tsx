@@ -384,17 +384,16 @@ function App() {
                 <span className="text-text-secondary">&gt;</span> marcela.init()
               </p>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tight mb-6 leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tight mb-4 leading-[1.1]">
                 <TypingText
-                  text={isCzech ? 'Stavím datové systémy, které myslí.' : 'I build data systems that think.'}
+                  text={isCzech ? 'Data Engineer & Full-stack Developer' : 'Data Engineer & Full-stack Developer'}
                   className="text-glow-cyan"
                 />
               </h1>
 
               <p className="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-xl animate-fade-in stagger-2" style={{ animationFillMode: 'both' }}>
-                <span className="text-text-primary font-medium">Technical Data Engineer</span>
-                <span className="text-neon-cyan mx-2">&</span>
-                <span className="text-text-primary font-medium">Full-stack Developer</span>
+                {isCzech ? 'Stavím datové systémy pro jasná rozhodnutí.' : 'I build data systems for clear insights.'}
+                <span className="block mt-1 text-sm text-text-secondary/60 font-mono">Python · DuckDB · AI · React · Czech Republic</span>
               </p>
 
               <div className="flex flex-wrap gap-2 mb-10 justify-center lg:justify-start animate-fade-in stagger-3" style={{ animationFillMode: 'both' }}>

@@ -385,14 +385,14 @@ function App() {
               </p>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tight mb-4 leading-[1.1]">
-                <TypingText
-                  text={isCzech ? 'Data Engineer & Full-stack Developer' : 'Data Engineer & Full-stack Developer'}
+                <TypingText 
+                 text={isCzech ? 'Stavím datové systémy pro jasná rozhodnutí.' : 'I build data systems for clear insights.'}
                   className="text-glow-cyan"
                 />
               </h1>
 
               <p className="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-xl animate-fade-in stagger-2" style={{ animationFillMode: 'both' }}>
-                {isCzech ? 'Stavím datové systémy pro jasná rozhodnutí.' : 'I build data systems for clear insights.'}
+                {isCzech ? 'Data Engineer & Full-stack Developer' : 'Data Engineer & Full-stack Developer'}
                 <span className="block mt-1 text-sm text-text-secondary/60 font-mono">Python · DuckDB · AI · React · Czech Republic</span>
               </p>
 

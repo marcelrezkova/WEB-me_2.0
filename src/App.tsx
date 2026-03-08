@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Mail, Github, Phone, Download, Linkedin, ChevronDown, ChevronUp, Database, Code, Brain, Terminal } from 'lucide-react';
+import { Mail, Github, Phone, Download, Linkedin, ChevronDown, ChevronUp, Database, Code, Brain, Terminal, Menu, X } from 'lucide-react';
 import { TechFox, TechFoxIcon } from './components/FoxMascot';
 import { GlowOrb, GridBackground, SectionDivider } from './components/DecorativeElements';
 
@@ -255,6 +255,7 @@ function CollapsibleExperience() {
 // ─── Main App ───
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -263,8 +264,16 @@ function App() {
   }, []);
 
   const scrollToSection = (id: string) => {
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const navItems = [
+    { id: 'about', label: 'about()' },
+    { id: 'projects', label: 'projects()' },
+    { id: 'stack', label: 'stack()' },
+    { id: 'contact', label: 'connect()' },
+  ];
 
   return (
     <div className="min-h-screen w-full bg-dark-primary text-text-primary font-body relative overflow-x-hidden">
@@ -282,17 +291,13 @@ function App() {
             </span>
           </button>
 
-          <div className="flex items-center gap-1 sm:gap-2">
-            {[
-              { id: 'about', label: isCzech ? 'about()' : 'about()' },
-              { id: 'projects', label: 'projects()' },
-              { id: 'stack', label: 'stack()' },
-              { id: 'contact', label: 'connect()' },
-            ].map(item => (
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-2">
+            {navItems.map(item => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="px-2 sm:px-3 py-1.5 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors duration-300"
+                className="px-3 py-1.5 text-xs font-mono text-text-secondary hover:text-neon-cyan transition-colors duration-300"
               >
                 {item.label}
               </button>
@@ -301,9 +306,41 @@ function App() {
               href="https://buymeacoffee.com/marcelarezd"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-2 sm:px-3 py-1.5 rounded border border-dark-border hover:border-neon-green/30 text-xs font-mono text-text-secondary hover:text-neon-green transition-all"
+              className="flex items-center gap-2 px-3 py-1.5 rounded border border-dark-border hover:border-neon-green/30 text-xs font-mono text-text-secondary hover:text-neon-green transition-all"
             >
-              <span>&#9749;</span> <span className="hidden md:inline">coffee</span>
+              <span>&#9749;</span> <span>coffee</span>
+            </a>
+          </div>
+
+          {/* Hamburger button — mobile only */}
+          <button
+            className="md:hidden p-2 text-text-secondary hover:text-neon-cyan transition-colors"
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="glass border-t border-dark-border px-6 py-4 flex flex-col gap-1">
+            {navItems.map(item => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-left py-3 text-sm font-mono text-text-secondary hover:text-neon-cyan transition-colors border-b border-dark-border/50 last:border-0"
+              >
+                <span className="text-neon-green mr-2">$</span>{item.label}
+              </button>
+            ))}
+            <a
+              href="https://buymeacoffee.com/marcelarezd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 text-sm font-mono text-text-secondary hover:text-neon-green transition-colors"
+            >
+              <span className="text-neon-green mr-2">$</span>&#9749; coffee
             </a>
           </div>
         </div>

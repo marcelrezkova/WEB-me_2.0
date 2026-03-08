@@ -322,29 +322,51 @@ function App() {
           </button>
         </div>
 
-        {/* Mobile menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="glass border-t border-dark-border px-6 py-4 flex flex-col gap-1">
-            {navItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-left py-3 text-sm font-mono text-text-secondary hover:text-neon-cyan transition-colors border-b border-dark-border/50 last:border-0"
-              >
-                <span className="text-neon-green mr-2">$</span>{item.label}
-              </button>
-            ))}
-            <a
-              href="https://buymeacoffee.com/marcelarezd"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 text-sm font-mono text-text-secondary hover:text-neon-green transition-colors"
-            >
-              <span className="text-neon-green mr-2">$</span>&#9749; coffee
-            </a>
-          </div>
-        </div>
       </nav>
+
+      {/* Mobile drawer overlay */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${menuOpen ? 'visible' : 'invisible'}`}
+        onClick={() => setMenuOpen(false)}
+      >
+        <div className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0'}`} />
+      </div>
+
+      {/* Mobile drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-72 z-50 md:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ background: 'rgba(10,10,10,0.97)', backdropFilter: 'blur(20px)', borderLeft: '1px solid rgba(255,255,255,0.08)' }}
+      >
+        <div className="flex items-center justify-between px-6 py-5 border-b border-dark-border">
+          <span className="font-mono text-xs text-neon-green">$ menu</span>
+          <button onClick={() => setMenuOpen(false)} className="p-1 text-text-secondary hover:text-neon-cyan transition-colors">
+            <X size={20} />
+          </button>
+        </div>
+        <div className="flex flex-col gap-1 p-4 flex-1">
+          {navItems.map((item, i) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="flex items-center gap-3 text-left px-4 py-4 rounded-xl font-mono text-base text-text-secondary hover:text-neon-cyan hover:bg-neon-cyan/5 border border-transparent hover:border-neon-cyan/20 transition-all duration-200"
+              style={{ transitionDelay: menuOpen ? `${i * 40}ms` : '0ms' }}
+            >
+              <span className="text-neon-green text-sm">$</span>
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <div className="px-4 pb-8">
+          <a
+            href="https://buymeacoffee.com/marcelarezd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-4 py-4 rounded-xl font-mono text-sm text-text-secondary hover:text-neon-green hover:bg-neon-green/5 border border-dark-border hover:border-neon-green/20 transition-all duration-200"
+          >
+            <span>&#9749;</span> buy me a coffee
+          </a>
+        </div>
+      </div>
 
       {/* ══════ HERO ══════ */}
       <header>
@@ -354,7 +376,7 @@ function App() {
         <GlowOrb color="rgba(191, 90, 242, 0.1)" size={300} bottom="10%" left="-10%" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-32 w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col-reverse lg:flex-row items-center gap-10 lg:gap-16">
             {/* Text side */}
             <div className="flex-1 text-center lg:text-left">
               <p className="font-mono text-sm text-neon-green mb-4 animate-fade-in">

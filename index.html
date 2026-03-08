@@ -38,16 +38,12 @@
       "name": "Marcela Rezkova",
       "url": "https://fullstackdev.cz",
       "image": "https://fullstackdev.cz/og-image.png",
-      "jobTitle": "Technical Data Engineer & Full-stack Developer",
+      "jobTitle": "Data Engineer & Full-stack Developer",
       "worksFor": {
         "@type": "Organization",
         "name": "IIIDM international consulting"
       },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "University of South Bohemia"
-      },
-      "knowsAbout": ["Python", "SQL", "DuckDB", "Data Engineering", "ETL Pipelines", "AI Integration", "Claude API", "React", "Node.js", "TailwindCSS", "Google Cloud Platform", "Supabase", "Web Scraping", "Lakehouse Architecture"],
+      "knowsAbout": ["Python", "SQL", "DuckDB", "Data Engineering", "ETL Pipelines", "AI Integration", "Claude API", "React", "Node.js", "TailwindCSS", "Google Cloud Platform", "Supabase", "Lakehouse Architecture"],
       "sameAs": [
         "https://github.com/marcelrezkova",
         "https://www.linkedin.com/in/marcelrezkova/"
@@ -59,7 +55,63 @@
     }
     </script>
 
-    <!-- Google Analytics -->
+    <!-- Fonts — preconnect for speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root">
+      <!-- SEO static content — visually hidden, readable by crawlers and screen readers -->
+      <div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">
+        <nav>
+          <a href="#about">about</a>
+          <a href="#projects">projects</a>
+          <a href="#stack">stack</a>
+          <a href="#contact">connect</a>
+        </nav>
+        <main>
+          <section id="hero">
+            <h1>Data Engineer &amp; Full-stack Developer</h1>
+            <p>I build data systems for clear insights. Based in Czech Republic. Python, SQL, DuckDB, AI integration via Claude API, ETL pipelines, lakehouse architecture on MotherDuck, React full-stack applications.</p>
+            <a href="#contact">connect</a>
+            <a href="#projects">view projects</a>
+          </section>
+          <section id="about">
+            <h2>Data Engineering, AI &amp; Full-stack Development</h2>
+            <p>Designing and orchestrating production ETL pipelines, lakehouse architecture on MotherDuck and DuckDB, database management with Supabase. Automated data pipelines with 100% reliability for global clients.</p>
+            <p>LLM integration via Claude API. Building AI-powered scoring models and intelligent tools that automate business decision-making.</p>
+            <p>End-to-end full-stack development with React, Node.js, and TailwindCSS.</p>
+          </section>
+          <section id="projects">
+            <h2>Power Projects</h2>
+            <h3>Tref Kára — AI car marketplace engine</h3>
+            <p>AI-powered automotive marketplace engine. Python, DuckDB, Claude API, lakehouse architecture.</p>
+            <h3>Market Intelligence Engine</h3>
+            <p>Data harvesting system for B2B market intelligence across Czech Republic regions.</p>
+            <h3>IIIDM — Full-stack apps &amp; data pipelines</h3>
+            <p>Full-stack development for international consulting firm. Python, React, DuckDB, Supabase.</p>
+            <h3>Client Websites</h3>
+            <p>Responsive web applications with React, TailwindCSS and SEO optimization.</p>
+          </section>
+          <section id="stack">
+            <h2>Tech Stack</h2>
+            <p>Python, SQL, JavaScript, TypeScript, DuckDB, Supabase, ETL Pipelines, Google Cloud Platform, MotherDuck, React, Node.js, TailwindCSS, Claude API, LLM Integration, Git, Web Scraping.</p>
+          </section>
+          <section id="contact">
+            <h2>Let's build something that matters.</h2>
+            <p>Data engineer for ETL pipelines, full-stack developer for web applications, AI integration partner.</p>
+            <a href="https://github.com/marcelrezkova">github</a>
+            <a href="https://www.linkedin.com/in/marcelrezkova/">linkedin</a>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Google Analytics — loaded after page content for better TTI -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL0YEGPST2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -67,61 +119,5 @@
       gtag('js', new Date());
       gtag('config', 'G-QL0YEGPST2');
     </script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root">
-      <!-- Static content for SEO crawlers — hidden from users, readable by bots -->
-      <div style="display:none" aria-hidden="true">
-      <header>
-        <nav>
-          <a href="/">marcela.fullstackdev</a>
-          <a href="#about">about</a>
-          <a href="#projects">projects</a>
-          <a href="#stack">stack</a>
-          <a href="#contact">connect</a>
-        </nav>
-      </header>
-      <main>
-        <section id="hero">
-          <h1>I build data systems that think.</h1>
-          <p>Technical Data Engineer &amp; Full-stack Developer based in Czech Republic. Specializing in Python, SQL, DuckDB, AI integration via Claude API, ETL pipelines, lakehouse architecture on MotherDuck, and React full-stack applications.</p>
-          <p>
-            <a href="#contact">connect()</a>
-            <a href="#projects">view_work()</a>
-          </p>
-        </section>
-        <section id="about">
-          <h2>Data Engineering, AI &amp; Full-stack Development</h2>
-          <p>Designing and orchestrating production ETL pipelines, lakehouse architecture on MotherDuck and DuckDB, database management with Supabase. Automated data pipelines with 100% reliability for global clients.</p>
-          <p>LLM integration via Claude API and Anthropic SDK. Building AI-powered scoring models, conversational interfaces, and intelligent tools that automate business decision-making.</p>
-          <p>End-to-end full-stack development with React, Node.js, and TailwindCSS. From Python backends and REST APIs to responsive, performance-optimized web applications.</p>
-        </section>
-        <section id="projects">
-          <h2>Power Projects</h2>
-          <h3>Tref Kára — AI car marketplace engine</h3>
-          <p>AI-powered automotive marketplace engine. Web scraping aggregates market data into a MotherDuck Lakehouse, Claude API prioritizes vehicle parameters (prestige, TCO, comfort), and generates real-time EV vs ICE price indexing.</p>
-          <h3>Market Intelligence Engine</h3>
-          <p>Production-grade data harvesting system tracking service pricing and provider availability across B2B sectors in Czech Republic. Geospatial analysis by region, automated sector filtering, and competitive benchmarking.</p>
-          <h3>IIIDM — Full-stack apps &amp; data pipelines</h3>
-          <p>Full-stack development of data-intensive applications for an international consulting firm. Architecting Python backends with interactive React frontends, orchestrating automated monthly ETL pipelines, and managing DuckDB/Supabase database systems.</p>
-          <h3>Client Websites</h3>
-          <p>Designing and developing modern responsive web applications for small and medium businesses. Technical SEO optimization, custom branding, mobile-first approach.</p>
-        </section>
-        <section id="contact">
-          <h2>Let's build something that matters.</h2>
-          <p>Need a data engineer for ETL pipelines and lakehouse architecture, a full-stack developer for web applications, or a partner for AI integration?</p>
-          <a href="mailto:marcelarezkova98@icloud.com">email</a>
-          <a href="https://github.com/marcelrezkova">github</a>
-          <a href="https://www.linkedin.com/in/marcelrezkova/">linkedin</a>
-        </section>
-      </main>
-      </div>
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

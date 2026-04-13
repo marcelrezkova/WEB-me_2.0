@@ -68,7 +68,7 @@ const projects = [
       ? ['Lakehouse architektura na MotherDuck', 'AI scoring model pro prioritizaci vozidel', 'Cenový index EV vs ICE v reálném čase']
       : ['Lakehouse architecture on MotherDuck', 'AI scoring model for vehicle prioritization', 'Real-time EV vs ICE price indexing'],
     links: [
-      { label: 'trefkaru', url: 'https://www.trefkaru.cz/' },
+      { label: 'trefkaru.cz', url: 'https://www.trefkaru.cz/' },
     ],
   },
   {

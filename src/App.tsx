@@ -67,6 +67,9 @@ const projects = [
     highlights: isCzech
       ? ['Lakehouse architektura na MotherDuck', 'AI scoring model pro prioritizaci vozidel', 'Cenový index EV vs ICE v reálném čase']
       : ['Lakehouse architecture on MotherDuck', 'AI scoring model for vehicle prioritization', 'Real-time EV vs ICE price indexing'],
+    links: [
+      { label: 'trefkaru', url: 'https://www.trefkaru.cz/' },
+    ],
   },
   {
     id: 'sousedi',

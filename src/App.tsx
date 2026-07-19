@@ -57,29 +57,68 @@ const isCzech = typeof navigator !== 'undefined' && navigator.language.startsWit
 const projects = [
   {
     id: 'trefkara',
-    title: 'Tref Kára',
-    subtitle: isCzech ? 'AI car marketplace engine' : 'AI car marketplace engine',
+    title: 'TrefKáru',
+    subtitle: isCzech ? 'Fullstack automotive data platform' : 'Fullstack automotive data platform',
     description: isCzech
-      ? 'AI-powered marketplace engine pro automobilový trh. Web scraping agreguje data do MotherDuck Lakehouse, Claude API prioritizuje parametry (prestige, TCO, comfort) a generuje cenový index EV vs ICE v reálném čase.'
-      : 'AI-powered automotive marketplace engine. Web scraping aggregates market data into a MotherDuck Lakehouse, Claude API prioritizes vehicle parameters (prestige, TCO, comfort), and generates real-time EV vs ICE price indexing.',
-    stack: ['Python', 'DuckDB', 'Claude API', 'Web Scraping', 'Lakehouse'],
+      ? 'Fullstack platforma pro automobilový trh s 5-vrstvou ETL pipeline (RAW → STAGING → CORE → METRICS → MART). Web scraping z Bazos.cz a Sauto.cz, FastAPI backend, React frontend s 3D vizualizacemi. Multi-agent systém řízený přes Slack a GitHub Actions automaticky rozděluje úkoly mezi frontend, backend a fullstack agenty.'
+      : 'Fullstack automotive data platform with a 5-layer ETL pipeline (RAW → STAGING → CORE → METRICS → MART). Web scraping from Bazos.cz and Sauto.cz, FastAPI backend, React frontend with 3D visualizations. Multi-agent system driven via Slack and GitHub Actions automatically dispatches tasks to frontend, backend, and fullstack agents.',
+    stack: ['Python', 'FastAPI', 'DuckDB', 'React', 'Claude API', 'Docker'],
     color: 'cyan' as const,
     highlights: isCzech
-      ? ['Lakehouse architektura na MotherDuck', 'AI scoring model pro prioritizaci vozidel', 'Cenový index EV vs ICE v reálném čase']
-      : ['Lakehouse architecture on MotherDuck', 'AI scoring model for vehicle prioritization', 'Real-time EV vs ICE price indexing'],
+      ? ['5-vrstvá ETL pipeline s DuckDB Lakehouse', 'Multi-agent systém (Slack + GitHub Actions)', 'Deal scoring engine + 3D vizualizace (Three.js)']
+      : ['5-layer ETL pipeline with DuckDB Lakehouse', 'Multi-agent system (Slack + GitHub Actions)', 'Deal scoring engine + 3D visualizations (Three.js)'],
     links: [
       { label: 'trefkaru.cz', url: 'https://www.trefkaru.cz/' },
     ],
+  },
+  {
+    id: 'simon',
+    title: 'Simon',
+    subtitle: isCzech ? 'Agentická AI workflow platforma v Rustu' : 'Agentic AI workflow platform in Rust',
+    description: isCzech
+      ? 'Lokální AI orchestrátor v Rustu (v aktivním vývoji). Modulární monolit s event-driven architekturou, CLI rozhraním a plánovaným parallel inference (Ollama + Claude API). Navržený pro 5 domén: SW development, testování, bezpečnost, business a marketing.'
+      : 'Local AI orchestrator in Rust (in active development). Modular monolith with event-driven architecture, CLI interface, and planned parallel inference (Ollama + Claude API). Designed for 5 domains: SW development, testing, security, business, and marketing.',
+    stack: ['Rust', 'Python', 'Claude API', 'Next.js'],
+    color: 'purple' as const,
+    highlights: isCzech
+      ? ['Event-driven architektura v Rustu', 'CLI + plánované Web UI (Next.js)', '5 domain agentů + plugin systém']
+      : ['Event-driven architecture in Rust', 'CLI + planned Web UI (Next.js)', '5 domain agents + plugin system'],
+  },
+  {
+    id: 'czechpaygap',
+    title: 'CzechPayGap',
+    subtitle: isCzech ? 'Automatizovaná analýza mzdové mezery v ČR' : 'Automated Czech wage gap analysis',
+    description: isCzech
+      ? 'Datový pipeline porovnávající oficiální mzdové statistiky ČSÚ s reálnými nabídkami z 14+ pracovních portálů. Automatizovaný denní scraping přes GitHub Actions, DuckDB analytika, interaktivní Streamlit dashboard s Plotly vizualizacemi mzdových rozdílů podle regionů a sektorů.'
+      : 'Data pipeline comparing official Czech Statistical Office wage data with real job offers from 14+ portals. Automated daily scraping via GitHub Actions, DuckDB analytics, interactive Streamlit dashboard with Plotly visualizations of wage gaps by region and sector.',
+    stack: ['Python', 'DuckDB', 'Supabase', 'Streamlit', 'GitHub Actions'],
+    color: 'green' as const,
+    highlights: isCzech
+      ? ['Denní automatizovaný pipeline (GitHub Actions)', 'Scraping 14+ pracovních portálů', 'Interaktivní PayGap Index dashboard']
+      : ['Daily automated pipeline (GitHub Actions)', 'Scraping 14+ job portals', 'Interactive PayGap Index dashboard'],
+  },
+  {
+    id: 'trading',
+    title: isCzech ? 'BTC Trading Engine' : 'BTC Trading Engine',
+    subtitle: isCzech ? 'Automatizované obchodní strategie + AI advisor' : 'Automated trading strategies + AI advisor',
+    description: isCzech
+      ? 'Komplexní BTC obchodní systém s vlastním backtesting enginem na historických datech (2020–2026). Strategie založená na halving cyklech, ATH levelech a 6H svíčkových vzorech. Claude AI advisor poskytuje doporučení na základě Fear & Greed Indexu, tržní fáze a portfolia. Součástí jsou trading boty, gem scanner a daily reporty přes Slack.'
+      : 'Comprehensive BTC trading system with custom backtesting engine on historical data (2020–2026). Strategy based on halving cycles, ATH levels, and 6H candlestick patterns. Claude AI advisor provides recommendations based on Fear & Greed Index, market phase, and portfolio state. Includes trading bots, gem scanner, and daily Slack reports.',
+    stack: ['Python', 'Claude API', 'Pandas', 'Matplotlib', 'Docker'],
+    color: 'purple' as const,
+    highlights: isCzech
+      ? ['Backtesting engine s equity curve vizualizací', 'AI advisor s Fear & Greed Index integrací', 'Automatizované daily reporty + Slack notifikace']
+      : ['Backtesting engine with equity curve visualization', 'AI advisor with Fear & Greed Index integration', 'Automated daily reports + Slack notifications'],
   },
   {
     id: 'sousedi',
     title: isCzech ? 'Jak to mají sousedi' : 'Market Intelligence Engine',
     subtitle: isCzech ? 'B2B market intelligence' : 'Real-time B2B market intelligence',
     description: isCzech
-      ? 'Kompletní data harvesting systém pro sledování cen služeb a dostupnosti poskytovatelů v B2B sektorech. Geospatial analýza podle regionů v Česku, sektorové filtrování a automatizovaný konkurenční benchmarking pro řemeslníky a firmy.'
-      : 'Production-grade data harvesting system tracking service pricing and provider availability across B2B sectors in Czech Republic. Geospatial analysis by region, automated sector filtering, and competitive benchmarking for businesses and tradespeople.',
+      ? 'Data harvesting systém pro sledování cen služeb a dostupnosti poskytovatelů v B2B sektorech. Geospatial analýza podle regionů v Česku, sektorové filtrování a automatizovaný konkurenční benchmarking pro řemeslníky a firmy.'
+      : 'Data harvesting system tracking service pricing and provider availability across B2B sectors in Czech Republic. Geospatial analysis by region, automated sector filtering, and competitive benchmarking for businesses and tradespeople.',
     stack: ['Python', 'SQL', 'Data Harvesting', 'Geospatial'],
-    color: 'green' as const,
+    color: 'cyan' as const,
     highlights: isCzech
       ? ['Scraping a analýza trhu v reálném čase', 'Geospatial filtrování podle regionů', 'On-demand competitive analysis pro klienty']
       : ['Real-time market scraping and analysis', 'Geospatial filtering by region', 'On-demand competitive analysis for clients'],
@@ -89,10 +128,10 @@ const projects = [
     title: 'IIIDM',
     subtitle: isCzech ? 'Full-stack apps & data pipelines' : 'Full-stack apps & data pipelines for global clients',
     description: isCzech
-      ? 'Full-stack vývoj datově náročných aplikací pro mezinárodní konzultační firmu. Architektura Python backendů s interaktivními React frontendami, orchestrace automatizovaných měsíčních ETL pipeline a správa DuckDB/Supabase databází se 100% spolehlivostí.'
-      : 'Full-stack development of data-intensive applications for an international consulting firm. Architecting Python backends with interactive React frontends, orchestrating automated monthly ETL pipelines, and managing DuckDB/Supabase database systems with 100% data reliability.',
-    stack: ['Python', 'Supabase', 'DuckDB', 'Node.js', 'React'],
-    color: 'purple' as const,
+      ? 'Full-stack vývoj datově náročných aplikací pro mezinárodní konzultační firmu. Python backendy s React frontendami, automatizované měsíční ETL pipeline a správa DuckDB/Supabase databází se 100% spolehlivostí.'
+      : 'Full-stack development of data-intensive applications for an international consulting firm. Python backends with React frontends, automated monthly ETL pipelines, and DuckDB/Supabase database management with 100% data reliability.',
+    stack: ['Python', 'Supabase', 'DuckDB', 'React'],
+    color: 'green' as const,
     highlights: isCzech
       ? ['Automatizované měsíční pipeline', '100% spolehlivost dat', 'Full-stack vývoj pro mezinárodní klienty']
       : ['Automated monthly update pipelines', '100% data reliability', 'Full-stack development for international clients'],
@@ -102,13 +141,45 @@ const projects = [
     ],
   },
   {
+    id: 'vyukazpevu',
+    title: isCzech ? 'Výuka zpěvu Drahenice' : 'Singing Lessons Platform',
+    subtitle: isCzech ? 'Fullstack web s admin backendem a platební bránou' : 'Fullstack web app with admin backend & payment gateway',
+    description: isCzech
+      ? 'Kompletní webová aplikace pro soukromou výuku zpěvu. Next.js frontend s Convex backendem, registrační a rezervační systém, administrátorský panel, emailové notifikace a napojení na platební bránu Comgate. SEO optimalizace se strukturovanými daty (schema.org).'
+      : 'Complete web application for private singing lessons. Next.js frontend with Convex backend, registration and booking system, admin panel, email notifications, and Comgate payment gateway integration. SEO optimized with structured data (schema.org).',
+    stack: ['Next.js', 'Convex', 'Comgate', 'TypeScript', 'SEO'],
+    color: 'purple' as const,
+    highlights: isCzech
+      ? ['Admin panel + rezervační systém', 'Platební brána Comgate', 'Schema.org strukturovaná data pro SEO']
+      : ['Admin panel + booking system', 'Comgate payment gateway', 'Schema.org structured data for SEO'],
+    links: [
+      { label: 'vyukazpevudrahenice.cz', url: 'https://www.vyukazpevudrahenice.cz/' },
+    ],
+  },
+  {
+    id: 'howtogetopinion',
+    title: 'HowToGetOpinion',
+    subtitle: isCzech ? 'Sociální experiment — 100K followers za 90 dní' : 'Social experiment — 100K followers in 90 days',
+    description: isCzech
+      ? 'Webová aplikace dokumentující veřejný sociální experiment: vybudovat 100K sledujících na TikToku, Instagramu, YouTube a LinkedInu za 90 dní — bez obličeje a bez předem připraveného produktu. Waitlist systém, real-time počítadlo dní a cross-platform distribuce obsahu.'
+      : 'Web application documenting a public social media experiment: building 100K followers across TikTok, Instagram, YouTube, and LinkedIn in 90 days — no face, no pre-built product. Waitlist system, real-time day counter, and cross-platform content distribution.',
+    stack: ['React', 'Railway', 'TailwindCSS'],
+    color: 'pink' as const,
+    highlights: isCzech
+      ? ['Cross-platform obsah (TikTok, IG, YT, LinkedIn)', 'Waitlist systém se sběrem emailů', 'Built-in-public filosofie']
+      : ['Cross-platform content (TikTok, IG, YT, LinkedIn)', 'Waitlist system with email collection', 'Built-in-public philosophy'],
+    links: [
+      { label: 'howtogetopinion', url: 'https://howtogetopinion-production.up.railway.app/' },
+    ],
+  },
+  {
     id: 'websites',
     title: isCzech ? 'Klientské weby' : 'Client Websites',
     subtitle: isCzech ? 'Responzivní webové aplikace' : 'Responsive web applications',
     description: isCzech
-      ? 'Návrh a vývoj moderních responzivních webových aplikací pro malé a střední firmy v Česku. Technická SEO optimalizace, vlastní branding, mobile-first přístup a vysoký výkon na Google PageSpeed.'
-      : 'Designing and developing modern responsive web applications for small and medium businesses. Technical SEO optimization, custom branding, mobile-first approach, and high Google PageSpeed performance scores.',
-    stack: ['React', 'TailwindCSS', 'Node.js', 'SEO'],
+      ? 'Návrh a vývoj moderních responzivních webových aplikací pro malé a střední firmy. SEO optimalizace, vlastní branding, mobile-first přístup a vysoký výkon na Google PageSpeed.'
+      : 'Designing and developing modern responsive web applications for small and medium businesses. SEO optimization, custom branding, mobile-first approach, and high Google PageSpeed scores.',
+    stack: ['React', 'TailwindCSS', 'Vite', 'SEO'],
     color: 'pink' as const,
     highlights: isCzech
       ? ['kurzystudiomirage.cz', 'kadernicehelena.cz', 'smooth-development.com']
@@ -122,30 +193,30 @@ const projects = [
 ];
 
 const techStack = {
-  Languages: ['Python', 'SQL', 'JavaScript', 'TypeScript'],
-  Data: ['DuckDB', 'Supabase', 'ETL Pipelines', 'Data Modeling'],
-  Cloud: ['Google Cloud Platform', 'MotherDuck', 'Streamlit'],
-  Frontend: ['React', 'Node.js', 'TailwindCSS', 'HTML/CSS'],
-  AI: ['Claude API', 'LLM Integration', 'Scoring Models'],
-  Tools: ['Git', 'REST APIs', 'Web Scraping', 'Automation'],
+  Languages: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'Rust'],
+  Frontend: ['React', 'Next.js', 'TailwindCSS', 'HTML/CSS'],
+  Backend: ['FastAPI', 'Convex', 'REST APIs', 'Supabase'],
+  Data: ['DuckDB', 'Pandas', 'ETL Pipelines', 'Web Scraping'],
+  AI: ['Claude API', 'Anthropic SDK', 'AI Agents', 'Streamlit'],
+  DevOps: ['Docker', 'Git', 'GitHub Actions', 'Railway', 'Netlify'],
 };
 
 const experiences = [
   {
-    title: isCzech ? 'Full-stack Developer & Data Systems Specialist' : 'Full-stack Developer & Data Systems Specialist',
+    title: 'Full-stack Developer',
     company: 'IIIDM international consulting',
     period: '2025 — Present',
     description: isCzech
-      ? 'Architektura datově náročných full-stack aplikací, orchestrace automatizovaných ETL pipeline, správa DuckDB a Supabase databázových systémů pro mezinárodní klienty.'
-      : 'Architecting data-intensive full-stack applications, orchestrating automated ETL pipelines, managing DuckDB and Supabase database systems for international clients.',
+      ? 'React frontendy s Python backendy pro mezinárodní konzultační firmu. DuckDB a Supabase databáze, ETL pipeline, automatizované měsíční updaty se 100% spolehlivostí dat.'
+      : 'React frontends with Python backends for an international consulting firm. DuckDB and Supabase databases, ETL pipelines, automated monthly updates with 100% data reliability.',
   },
   {
-    title: isCzech ? 'Freelance Web Developer' : 'Freelance Web Developer',
+    title: isCzech ? 'Freelance Full-stack Developer' : 'Freelance Full-stack Developer',
     company: isCzech ? 'OSVČ' : 'Self-employed',
     period: '2025 — Present',
     description: isCzech
-      ? 'Vývoj responzivních webových aplikací v React, Node.js a TailwindCSS. SEO optimalizace a mobile-first design pro malé a střední firmy.'
-      : 'Building responsive web applications with React, Node.js, and TailwindCSS. SEO optimization and mobile-first design for small and medium businesses.',
+      ? 'Fullstack webové aplikace (React, Next.js, FastAPI). Klientské weby s admin panely, platebními bránami a rezervačními systémy. Datové pipeline a AI integrace.'
+      : 'Fullstack web applications (React, Next.js, FastAPI). Client websites with admin panels, payment gateways, and booking systems. Data pipelines and AI integration.',
   },
   {
     title: isCzech ? 'Zakladatelka & projektová administrátorka' : 'Founder & Project Administrator',
@@ -169,29 +240,29 @@ const neonColors = {
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   const c = neonColors[project.color];
   return (
-    <div className={`glass-card rounded-xl p-6 md:p-8 ${c.glow} transition-all duration-300`}>
-      <div className="flex items-start justify-between mb-4">
+    <div className={`glass-card rounded-xl p-4 md:p-5 ${c.glow} transition-all duration-300`}>
+      <div className="flex items-start justify-between mb-2">
         <div>
-          <h3 className={`font-mono font-bold text-xl md:text-2xl ${c.text}`}>{project.title}</h3>
-          <p className="text-text-secondary text-sm mt-1">{project.subtitle}</p>
+          <h3 className={`font-mono font-bold text-lg ${c.text}`}>{project.title}</h3>
+          <p className="text-text-secondary text-xs mt-0.5">{project.subtitle}</p>
         </div>
-        <Terminal size={20} className={`${c.text} opacity-50`} />
+        <Terminal size={16} className={`${c.text} opacity-50`} />
       </div>
 
-      <p className="text-text-primary/80 leading-relaxed mb-5 text-sm md:text-base">{project.description}</p>
+      <p className="text-text-primary/80 leading-relaxed mb-3 text-sm">{project.description}</p>
 
-      <div className="flex flex-wrap gap-2 mb-5">
+      <div className="flex flex-wrap gap-1.5 mb-3">
         {project.stack.map(tech => (
-          <span key={tech} className={`neon-chip px-3 py-1 rounded text-xs font-mono ${c.bg} ${c.text} border ${c.border}`}>
+          <span key={tech} className={`neon-chip px-2 py-0.5 rounded text-xs font-mono ${c.bg} ${c.text} border ${c.border}`}>
             {tech}
           </span>
         ))}
       </div>
 
-      <ul className="space-y-1.5 mb-4">
+      <ul className="space-y-1 mb-2">
         {project.highlights.map((h, i) => (
-          <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
-            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full ${c.bg} ${c.text} flex-shrink-0`}>
+          <li key={i} className="text-xs text-text-secondary flex items-start gap-2">
+            <span className={`mt-1 w-1.5 h-1.5 rounded-full ${c.bg} ${c.text} flex-shrink-0`}>
               <span className={`block w-1.5 h-1.5 rounded-full bg-current`} />
             </span>
             {h}
@@ -200,15 +271,43 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       </ul>
 
       {project.links && (
-        <div className="flex gap-3 mt-4 pt-4 border-t border-dark-border">
+        <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-dark-border">
           {project.links.map(link => (
             <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer"
-              className={`text-sm font-mono ${c.text} hover:underline opacity-70 hover:opacity-100 transition-opacity`}>
+              className={`text-xs font-mono ${c.text} hover:underline opacity-70 hover:opacity-100 transition-opacity`}>
               {link.label} &rarr;
             </a>
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function CollapsibleProjects() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="mb-8 px-6 py-3 rounded-lg bg-dark-elevated border border-dark-border hover:border-neon-cyan/30 transition-all duration-300 font-mono text-sm text-text-secondary hover:text-neon-cyan mx-auto flex items-center gap-2"
+        aria-expanded={open}
+      >
+        <span className="text-neon-green">$</span>
+        {open ? 'hide_projects()' : `show_projects(${projects.length})`}
+        {open ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+      </button>
+      <div className={`transition-all duration-500 overflow-hidden ${open ? 'max-h-[6000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        {open && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map(project => (
+              <ScrollReveal key={project.id}>
+                <ProjectCard project={project} />
+              </ScrollReveal>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -389,19 +488,19 @@ function App() {
               </p>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold tracking-tight mb-4 leading-[1.1]">
-                <TypingText 
-                 text={isCzech ? 'Stavím datové systémy pro jasná rozhodnutí.' : 'I build data systems for clear insights.'}
+                <TypingText
+                 text={isCzech ? 'Fullstack aplikace postavené na datech a AI.' : 'Fullstack apps powered by data & AI.'}
                   className="text-glow-cyan"
                 />
               </h1>
 
               <p className="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed max-w-xl animate-fade-in stagger-2" style={{ animationFillMode: 'both' }}>
-                {isCzech ? 'Data Engineer & Full-stack Developer' : 'Data Engineer & Full-stack Developer'}
-                <span className="block mt-1 text-sm text-text-secondary/60 font-mono">Python · DuckDB · AI · React · Czech Republic</span>
+                {isCzech ? 'Full-stack Developer & Data Engineer' : 'Full-stack Developer & Data Engineer'}
+                <span className="block mt-1 text-sm text-text-secondary/60 font-mono">React · Next.js · Python · TypeScript · Czech Republic</span>
               </p>
 
               <div className="flex flex-wrap gap-2 mb-10 justify-center lg:justify-start animate-fade-in stagger-3" style={{ animationFillMode: 'both' }}>
-                {['Python', 'SQL', 'DuckDB', 'Node.js', 'GCP', 'Claude API'].map((tech, i) => {
+                {['React', 'Next.js', 'TypeScript', 'Python', 'FastAPI', 'DuckDB'].map((tech, i) => {
                   const colors = ['text-neon-cyan', 'text-neon-green', 'text-neon-purple', 'text-neon-cyan', 'text-neon-green', 'text-neon-pink'];
                   return (
                     <span key={tech} className={`neon-chip px-3 py-1 rounded text-xs font-mono border border-dark-border hover:border-dark-border-glow ${colors[i]} bg-dark-elevated`}>
@@ -455,35 +554,35 @@ function App() {
               <span className="text-text-secondary">&gt;</span> about.read()
             </p>
             <h2 className="text-3xl md:text-4xl font-mono font-bold mb-12">
-              {isCzech ? 'Data Engineering, AI & Full-stack Development' : 'Data Engineering, AI & Full-stack Development'}
+              {isCzech ? 'Full-stack Development, Data & AI' : 'Full-stack Development, Data & AI'}
             </h2>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                icon: <Database size={24} />,
-                title: 'Data Engineering',
-                description: isCzech
-                  ? 'Návrh a orchestrace ETL pipelines, lakehouse architektura na MotherDuck a DuckDB, správa databází v Supabase. Automatizované datové pipeline se 100% spolehlivostí pro globální klienty.'
-                  : 'Designing and orchestrating production ETL pipelines, lakehouse architecture on MotherDuck and DuckDB, database management with Supabase. Automated data pipelines with 100% reliability for global clients.',
-                color: 'cyan' as const,
-              },
-              {
-                icon: <Brain size={24} />,
-                title: 'AI Integration',
-                description: isCzech
-                  ? 'Integrace LLM modelů přes Claude API a Anthropic SDK. Vývoj AI scoring modelů, konverzačních rozhraní a inteligentních nástrojů pro automatizaci business rozhodování.'
-                  : 'LLM integration via Claude API and Anthropic SDK. Building AI-powered scoring models, conversational interfaces, and intelligent tools that automate business decision-making.',
-                color: 'purple' as const,
-              },
-              {
                 icon: <Code size={24} />,
                 title: 'Full-stack Development',
                 description: isCzech
-                  ? 'Kompletní full-stack vývoj v React, Node.js a TailwindCSS. Od Python backendů a REST API po responzivní webové aplikace optimalizované pro výkon a SEO.'
-                  : 'End-to-end full-stack development with React, Node.js, and TailwindCSS. From Python backends and REST APIs to responsive, performance-optimized web applications.',
+                  ? 'React a Next.js frontendy s Python/FastAPI backendy. Admin panely, rezervační systémy, platební brány (Comgate), REST APIs. Produkční aplikace s autentizací, SEO a responzivním designem.'
+                  : 'React and Next.js frontends with Python/FastAPI backends. Admin panels, booking systems, payment gateways (Comgate), REST APIs. Production apps with auth, SEO, and responsive design.',
+                color: 'cyan' as const,
+              },
+              {
+                icon: <Database size={24} />,
+                title: 'Data Engineering',
+                description: isCzech
+                  ? 'ETL pipelines, web scraping a DuckDB/Supabase databáze. Automatizované denní pipeline přes GitHub Actions, datová analytika a interaktivní dashboardy ve Streamlitu.'
+                  : 'ETL pipelines, web scraping, and DuckDB/Supabase databases. Automated daily pipelines via GitHub Actions, data analytics, and interactive Streamlit dashboards.',
                 color: 'green' as const,
+              },
+              {
+                icon: <Brain size={24} />,
+                title: isCzech ? 'AI Integrace' : 'AI Integration',
+                description: isCzech
+                  ? 'Claude API a Anthropic SDK pro AI-powered funkce v aplikacích. Multi-agent systémy, AI advisor, scoring modely a automatizované reporty.'
+                  : 'Claude API and Anthropic SDK for AI-powered application features. Multi-agent systems, AI advisor, scoring models, and automated reports.',
+                color: 'purple' as const,
               },
             ].map(card => {
               const c = neonColors[card.color];
@@ -517,18 +616,12 @@ function App() {
             </h2>
             <p className="text-text-secondary mb-12 max-w-xl">
               {isCzech
-                ? 'AI-powered datové systémy, market intelligence a full-stack aplikace. Reálné problémy, měřitelné výsledky.'
-                : 'AI-powered data systems, market intelligence engines, and full-stack applications. Real problems, measurable results.'}
+                ? 'Fullstack aplikace, datové pipeline a AI integrace. Reálné problémy, produkční řešení.'
+                : 'Fullstack applications, data pipelines, and AI integration. Real problems, production solutions.'}
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map(project => (
-              <ScrollReveal key={project.id}>
-                <ProjectCard project={project} />
-              </ScrollReveal>
-            ))}
-          </div>
+          <CollapsibleProjects />
         </div>
       </section>
 
@@ -549,8 +642,8 @@ function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(techStack).map(([category, techs]) => {
               const colorMap: Record<string, keyof typeof neonColors> = {
-                Languages: 'cyan', Data: 'green', Cloud: 'purple',
-                Frontend: 'pink', AI: 'cyan', Tools: 'green',
+                Languages: 'cyan', Frontend: 'pink', Backend: 'purple',
+                Data: 'green', AI: 'cyan', DevOps: 'green',
               };
               const c = neonColors[colorMap[category] || 'cyan'];
               return (
@@ -606,8 +699,8 @@ function App() {
             </h2>
             <p className="text-text-secondary mb-12 max-w-lg mx-auto">
               {isCzech
-                ? 'Hledáte data engineera pro ETL pipelines a lakehouse architekturu, full-stack developera pro webové aplikace, nebo partnera pro AI integraci? Ozvěte se.'
-                : "Need a data engineer for ETL pipelines and lakehouse architecture, a full-stack developer for web applications, or a partner for AI integration? Let's talk."}
+                ? 'Hledám fullstack pozici, kde můžu růst. Mám zkušenosti s React, Python, datovými pipeline a AI integrací. Ozvěte se.'
+                : "Looking for a fullstack role where I can grow. Experienced in React, Python, data pipelines, and AI integration. Let's talk."}
             </p>
           </ScrollReveal>
 
@@ -645,7 +738,7 @@ function App() {
           <div className="flex items-center gap-3">
             <TechFoxIcon size={20} color="#00ffff" />
             <p className="text-xs text-text-secondary font-mono">
-              &copy; 2025 Marcela Rezkova
+              &copy; 2025–{new Date().getFullYear()} Marcela Rezkova
             </p>
           </div>
           <p className="text-xs text-text-secondary font-mono opacity-50">

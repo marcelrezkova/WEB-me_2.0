@@ -203,12 +203,12 @@ const techStack = {
 
 const experiences = [
   {
-    title: 'Full-stack Developer',
+    title: 'Analyst',
     company: 'IIIDM international consulting',
     period: '2025 — Present',
     description: isCzech
-      ? 'React frontendy s Python backendy pro mezinárodní konzultační firmu. DuckDB a Supabase databáze, ETL pipeline, automatizované měsíční updaty se 100% spolehlivostí dat.'
-      : 'React frontends with Python backends for an international consulting firm. DuckDB and Supabase databases, ETL pipelines, automated monthly updates with 100% data reliability.',
+      ? 'React frontendy s Python backendy pro mezinárodní konzultační firmu. DuckDB a Supabase databáze, ETL pipeline, automatizované měsíční updaty se 100% spolehlivostí dat. Projekt prispevkar.cz.'
+      : 'React frontends with Python backends for an international consulting firm. DuckDB and Supabase databases, ETL pipelines, automated monthly updates with 100% data reliability. Project prispevkar.cz.',
   },
   {
     title: isCzech ? 'Freelance Full-stack Developer' : 'Freelance Full-stack Developer',
@@ -721,8 +721,8 @@ function App() {
               <a href="https://www.linkedin.com/in/marcelrezkova/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-cyan font-mono text-sm text-text-secondary hover:text-neon-cyan transition-all">
                 <Linkedin size={16} /> <span className="text-neon-green">$</span> linkedin
               </a>
-              <a href="/MarcelaRezkovaResume.pdf" download className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-pink font-mono text-sm text-text-secondary hover:text-neon-pink transition-all">
-                <Download size={16} /> <span className="text-neon-green">$</span> resume
+              <a href={isCzech ? '/MarcelaRezkova_CV_CZ.pdf' : '/MarcelaRezkova_CV_EN.pdf'} download className="flex items-center gap-2 px-5 py-3 rounded-lg glass-card border-glow-pink font-mono text-sm text-text-secondary hover:text-neon-pink transition-all">
+                <Download size={16} /> <span className="text-neon-green">$</span> {isCzech ? 'životopis' : 'resume'}
               </a>
             </div>
           </ScrollReveal>

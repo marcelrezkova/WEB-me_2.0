@@ -213,7 +213,7 @@ const experiences = [
   {
     title: isCzech ? 'Freelance Full-stack Developer' : 'Freelance Full-stack Developer',
     company: isCzech ? 'OSVČ' : 'Self-employed',
-    period: '2025 — Present',
+    period: '2024 — Present',
     description: isCzech
       ? 'Fullstack webové aplikace (React, Next.js, FastAPI). Klientské weby s admin panely, platebními bránami a rezervačními systémy. Datové pipeline a AI integrace.'
       : 'Fullstack web applications (React, Next.js, FastAPI). Client websites with admin panels, payment gateways, and booking systems. Data pipelines and AI integration.',

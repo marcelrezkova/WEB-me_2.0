@@ -135,10 +135,6 @@ const projects = [
     highlights: isCzech
       ? ['Automatizované měsíční pipeline', '100% spolehlivost dat', 'Full-stack vývoj pro mezinárodní klienty']
       : ['Automated monthly update pipelines', '100% data reliability', 'Full-stack development for international clients'],
-    links: [
-      { label: 'iiidmic.com', url: 'https://iiidmic.com/' },
-      { label: 'vykonar.iiidmic.com', url: 'https://vykonar.iiidmic.com/' },
-    ],
   },
   {
     id: 'vyukazpevu',
@@ -207,8 +203,8 @@ const experiences = [
     company: 'IIIDM international consulting',
     period: '2025 — Present',
     description: isCzech
-      ? 'React frontendy s Python backendy pro mezinárodní konzultační firmu. DuckDB a Supabase databáze, ETL pipeline, automatizované měsíční updaty se 100% spolehlivostí dat. Projekt prispevkar.cz.'
-      : 'React frontends with Python backends for an international consulting firm. DuckDB and Supabase databases, ETL pipelines, automated monthly updates with 100% data reliability. Project prispevkar.cz.',
+      ? 'React frontendy s Python backendy pro mezinárodní konzultační firmu. DuckDB a Supabase databáze, ETL pipeline, automatizované měsíční updaty se 100% spolehlivostí dat.'
+      : 'React frontends with Python backends for an international consulting firm. DuckDB and Supabase databases, ETL pipelines, automated monthly updates with 100% data reliability.',
   },
   {
     title: isCzech ? 'Freelance Full-stack Developer' : 'Freelance Full-stack Developer',

@@ -1,0 +1,8 @@
+export type Work = { title: string; body: string; tags: string[]; status?: string };
+export const work: Work[] = [
+  { title: 'Agentic market-opportunity platform', body: 'Local AI orchestrator in Rust that collects public signals from dozens of sources, scores emerging opportunities for a target market, and produces a daily brief with audience, pricing and timing. Event-driven, MCP-ready.', tags: ['Rust', 'SurrealDB', 'MCP', 'Ollama'], status: 'In active development' },
+  { title: 'Automotive data platform with multi-agent development', body: 'Five-layer ETL (raw → staging → core → metrics → mart) over scraped listings, deal-scoring engine, React frontend with 3D visualisation; development tasks dispatched to specialised agents via Slack and CI.', tags: ['Python', 'FastAPI', 'DuckDB', 'React', 'Claude API'] },
+  { title: 'Analytics tool for regional government', body: 'API-first FastAPI service over a live SQL Server database that detects stale investment actions across thousands of records using configurable validators; built in a three-person team and presented to stakeholders.', tags: ['Python', 'FastAPI', 'SQL Server', 'Docker'] },
+  { title: 'Production web apps with bookings and payments', body: 'Next.js and React applications with admin panels, booking systems, e-mail notifications, payment-gateway integration and structured-data SEO for small businesses.', tags: ['Next.js', 'Convex', 'TypeScript', 'SEO'] },
+  { title: 'Labour-market and pricing analytics', body: 'Automated daily pipelines comparing official statistics with real market data from 14+ sources; DuckDB analytics and interactive dashboards.', tags: ['Python', 'DuckDB', 'GitHub Actions', 'Streamlit'] },
+];

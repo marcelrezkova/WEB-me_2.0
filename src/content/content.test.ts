@@ -17,4 +17,7 @@ describe('content', () => {
     expect(links.calendar).toMatch(/^https:\/\/calendar\.app\.google\//);
     expect(bookingUrl()).toBe(links.stripe || links.calendar);
   });
+  it('stripe payment link is a live buy.stripe.com URL', () => {
+    expect(links.stripe).toMatch(/^https:\/\/buy\.stripe\.com\//);
+  });
 });

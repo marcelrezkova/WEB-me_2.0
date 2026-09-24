@@ -5,14 +5,12 @@ import { Button } from '../ui/Button';
 
 type Props = { background?: ReactNode };
 
-const defaultBackground = (
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(94,242,255,0.12),transparent_60%)]" />
-);
-
-export function Hero({ background = defaultBackground }: Props) {
+export function Hero({ background }: Props) {
   return (
     <section id="hero" className="relative flex min-h-screen items-center overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        {/* static gradient stays underneath as the fallback if the background (e.g. WebGL) fails */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(94,242,255,0.12),transparent_60%)]" />
         {background}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-base" />
       </div>

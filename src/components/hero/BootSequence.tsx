@@ -4,7 +4,8 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { useIsMobile } from '../../hooks/useIsMobile';
 
 const KEY = 'booted';
-const DURATION_MS = 800;
+// line grows for 450 ms, onDone at 500 ms, then a 300 ms exit fade: gone within 0.8 s
+const DURATION_MS = 500;
 
 function hasBooted(): boolean {
   try {
@@ -56,7 +57,7 @@ export function BootSequence({ onDone }: { onDone: () => void }) {
           className="h-px bg-accent"
           initial={{ width: 0 }}
           animate={{ width: '100%' }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
         />
       </div>
       <p className="font-mono text-xs tracking-widest text-ink-dim">initialising · marcela.ai</p>

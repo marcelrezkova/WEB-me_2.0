@@ -1,4 +1,4 @@
-import { Component, lazy, Suspense, useCallback, useState, type ReactNode } from 'react';
+import { Component, lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
@@ -29,10 +29,33 @@ class CanvasBoundary extends Component<{ children: ReactNode }, { failed: boolea
   }
 }
 
+// Mount the particle field (and fetch/parse the three chunk) only after load + idle,
+// so first paint shows the static gradient.
+function useAfterLoadIdle(): boolean {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let idleId: number | undefined;
+    let timeoutId: number | undefined;
+    const schedule = () => {
+      if (typeof window.requestIdleCallback === 'function') idleId = window.requestIdleCallback(() => setReady(true), { timeout: 2000 });
+      else timeoutId = window.setTimeout(() => setReady(true), 200);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+    return () => {
+      window.removeEventListener('load', schedule);
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+    };
+  }, []);
+  return ready;
+}
+
 export default function App() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
   const [booted, setBooted] = useState(false);
+  const showField = useAfterLoadIdle();
   const onBootDone = useCallback(() => setBooted(true), []);
 
   return (
@@ -42,11 +65,13 @@ export default function App() {
       <main>
         <Hero
           background={
-            <CanvasBoundary>
-              <Suspense fallback={null}>
-                <ParticleField count={isMobile ? 600 : 2400} animate={!reduced} />
-              </Suspense>
-            </CanvasBoundary>
+            showField && (
+              <CanvasBoundary>
+                <Suspense fallback={null}>
+                  <ParticleField count={isMobile ? 600 : 2400} animate={!reduced} />
+                </Suspense>
+              </CanvasBoundary>
+            )
           }
         />
         <WhatIDo />

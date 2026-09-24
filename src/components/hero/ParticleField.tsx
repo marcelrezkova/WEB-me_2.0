@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { makeNetwork } from './particles';
 
@@ -33,15 +33,28 @@ function Network({ count }: { count: number }) {
 }
 
 export default function ParticleField({ count = 2400, animate = true }: { count?: number; animate?: boolean }) {
+  const wrap = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+  // Stop the render loop entirely while the hero is scrolled out of view.
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  const frameloop = !visible ? 'never' : animate ? 'always' : 'demand';
   // The hero background layer is pointer-events-none, so pointer tracking is attached to
   // document.body (client coordinates) instead of the canvas parent.
   return (
-    <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 55 }} frameloop={animate ? 'always' : 'demand'}
-      gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
-      onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
-      eventSource={document.body} eventPrefix="client"
-      style={{ position: 'absolute', inset: 0 }} aria-hidden>
-      <Network count={count} />
-    </Canvas>
+    <div ref={wrap} style={{ position: 'absolute', inset: 0 }}>
+      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 55 }} frameloop={frameloop}
+        gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
+        onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
+        eventSource={document.body} eventPrefix="client"
+        style={{ position: 'absolute', inset: 0 }} aria-hidden>
+        <Network count={count} />
+      </Canvas>
+    </div>
   );
 }

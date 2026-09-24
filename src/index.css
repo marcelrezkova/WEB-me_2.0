@@ -23,3 +23,21 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Pointer-following radial highlight for TiltCard (--mx/--my set on pointer move). */
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(94,242,255,0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.tilt-card:hover::before { opacity: 1; }
+
+/* lenis drives scrolling; native smooth scroll would fight it. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }

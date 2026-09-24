@@ -6,7 +6,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
   useEffect(() => {
     if (reduced) return;
-    const lenis = new Lenis({ lerp: 0.08 });
+    // anchors: Nav hash links scroll through lenis; lenis honours the targets' scroll-mt-20.
+    const lenis = new Lenis({ lerp: 0.08, anchors: true });
     let rafId = 0;
     const raf = (time: number) => {
       lenis.raf(time);

@@ -8,7 +8,7 @@ const SPRING = { stiffness: 180, damping: 18, mass: 0.6 };
 
 type Props = { children: ReactNode; className?: string };
 
-// Tilts up to ±6° toward the pointer; a radial cyan highlight (.tilt-card::before)
+// Tilts up to ±6° so the pointed-at corner lifts toward the viewer; a radial cyan highlight (.tilt-card::before)
 // follows the pointer via --mx/--my. Plain div under reduced motion or on mobile.
 export function TiltCard({ children, className = '' }: Props) {
   const reduced = useReducedMotion();
@@ -27,8 +27,8 @@ export function TiltCard({ children, className = '' }: Props) {
     const y = e.clientY - rect.top;
     const px = x / rect.width - 0.5;
     const py = y / rect.height - 0.5;
-    ry.set(px * 2 * MAX_DEG);
-    rx.set(-py * 2 * MAX_DEG);
+    ry.set(-px * 2 * MAX_DEG);
+    rx.set(py * 2 * MAX_DEG);
     el.style.setProperty('--mx', `${x}px`);
     el.style.setProperty('--my', `${y}px`);
   };

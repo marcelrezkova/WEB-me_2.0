@@ -29,7 +29,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
   border-radius: inherit;
   pointer-events: none;
   background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(94,242,255,0.18), transparent 60%);
@@ -37,6 +37,7 @@ body {
   transition: opacity 0.3s ease;
 }
 .tilt-card:hover::before { opacity: 1; }
+.tilt-card > * { position: relative; z-index: 1; }
 
 /* lenis drives scrolling; native smooth scroll would fight it. */
 html.lenis, html.lenis body { height: auto; }

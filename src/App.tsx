@@ -10,6 +10,8 @@ import { WorkWithMe } from './components/sections/WorkWithMe';
 import { Stack } from './components/sections/Stack';
 import { Contact } from './components/sections/Contact';
 import { BootSequence } from './components/hero/BootSequence';
+import { ScrollProgress } from './components/motion/ScrollProgress';
+import { SmoothScroll } from './components/motion/SmoothScroll';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { useIsMobile } from './hooks/useIsMobile';
 
@@ -59,7 +61,7 @@ export default function App() {
   const onBootDone = useCallback(() => setBooted(true), []);
 
   return (
-    <>
+    <SmoothScroll>
       <AnimatePresence>{!booted && <BootSequence onDone={onBootDone} />}</AnimatePresence>
       <Nav />
       <main>
@@ -82,6 +84,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+      <ScrollProgress />
+    </SmoothScroll>
   );
 }

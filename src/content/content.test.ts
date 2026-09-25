@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { hero, services, steps, work, stack } from './index';
 import { links, bookingUrl } from '../config';
+// ?raw reads the file as text via Vite (no @types/node needed for typecheck)
+import indexHtml from '../../index.html?raw';
 
 const CZECH = /[ěščřžýáíéůú]/i;
 const BANNED = /trefk|simon|iiidm|czechpaygap|drahenice|kraj vyso|elmarce/i;
@@ -19,5 +21,10 @@ describe('content', () => {
   });
   it('stripe payment link is a live buy.stripe.com URL', () => {
     expect(links.stripe).toMatch(/^https:\/\/buy\.stripe\.com\//);
+  });
+  it('static hero in index.html matches hero copy verbatim', () => {
+    expect(indexHtml).toContain(hero.kicker);
+    expect(indexHtml).toContain(hero.title);
+    expect(indexHtml).toContain(hero.sub);
   });
 });

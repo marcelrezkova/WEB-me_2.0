@@ -70,7 +70,7 @@ export default function App() {
             showField && (
               <CanvasBoundary>
                 <Suspense fallback={null}>
-                  <ParticleField count={isMobile ? 600 : 2400} animate={!reduced} />
+                  <ParticleField count={isMobile ? 600 : 1600} animate={!reduced} />
                 </Suspense>
               </CanvasBoundary>
             )

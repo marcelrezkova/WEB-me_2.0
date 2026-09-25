@@ -32,7 +32,7 @@ function Network({ count }: { count: number }) {
   );
 }
 
-export default function ParticleField({ count = 2400, animate = true }: { count?: number; animate?: boolean }) {
+export default function ParticleField({ count = 1600, animate = true }: { count?: number; animate?: boolean }) {
   const wrap = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
   // Stop the render loop entirely while the hero is scrolled out of view.
@@ -48,7 +48,7 @@ export default function ParticleField({ count = 2400, animate = true }: { count?
   // document.body (client coordinates) instead of the canvas parent.
   return (
     <div ref={wrap} style={{ position: 'absolute', inset: 0 }}>
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 9], fov: 55 }} frameloop={frameloop}
+      <Canvas dpr={[1, 1.25]} camera={{ position: [0, 0, 9], fov: 55 }} frameloop={frameloop}
         gl={{ antialias: false, alpha: true, powerPreference: 'low-power' }}
         onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
         eventSource={document.body} eventPrefix="client"

@@ -1,191 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Open Graph image source (1200x630). Render at exactly 1200x630 and save as public/og-image.png. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* Set exact OG image dimensions */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: #05060a; }
     body {
-      width: 1200px;
-      height: 630px;
-      overflow: hidden;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
       position: relative;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      color: #f2f4f8;
     }
-
-    /* Grid background */
-    .grid-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    /* Glow orbs */
-    .orb-1 {
-      position: absolute;
-      width: 400px; height: 400px;
+    /* soft accent glow and a faint node field, echoing the hero particle network */
+    .glow {
+      position: absolute; width: 720px; height: 720px; right: -220px; top: -260px;
       border-radius: 50%;
-      background: rgba(0, 255, 255, 0.12);
-      filter: blur(80px);
-      top: -100px; right: -50px;
+      background: radial-gradient(circle, rgba(94,242,255,0.16) 0%, rgba(94,242,255,0) 65%);
     }
-    .orb-2 {
-      position: absolute;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: rgba(191, 90, 242, 0.08);
-      filter: blur(80px);
-      bottom: -80px; left: -50px;
-    }
-
+    .nodes { position: absolute; right: 60px; top: 70px; opacity: 0.55; }
     .content {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      padding: 60px 80px;
+      position: absolute; left: 96px; right: 96px; top: 0; bottom: 0;
+      display: flex; flex-direction: column; justify-content: center;
     }
-
-    .left {
-      flex: 1;
+    .hairline { width: 96px; height: 2px; background: #5ef2ff; margin-bottom: 36px; box-shadow: 0 0 12px rgba(94,242,255,0.6); }
+    .name {
+      font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500;
+      letter-spacing: 0.04em; color: #a6adbb; margin-bottom: 28px;
     }
-
-    .terminal-line {
-      font-family: 'JetBrains Mono', 'Consolas', monospace;
-      font-size: 16px;
-      color: #39ff14;
-      margin-bottom: 20px;
-    }
-    .terminal-line span { color: #888; }
-
+    .name .dot { color: #5ef2ff; margin: 0 10px; }
+    .name .role { color: #f2f4f8; }
     h1 {
-      font-family: 'JetBrains Mono', 'Consolas', monospace;
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #00ffff, #e5e5e5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 72px; font-weight: 600; line-height: 1.06; letter-spacing: -0.02em;
+      max-width: 900px;
     }
-
-    .subtitle {
-      font-size: 22px;
-      color: #888;
-      margin-bottom: 32px;
-    }
-    .subtitle strong { color: #e5e5e5; }
-    .subtitle .amp { color: #00ffff; margin: 0 8px; }
-
-    .tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .tag {
-      font-family: 'JetBrains Mono', 'Consolas', monospace;
-      font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 6px;
-      border: 1px solid #222;
-      background: #111;
-    }
-    .tag-cyan { color: #00ffff; border-color: rgba(0,255,255,0.2); }
-    .tag-green { color: #39ff14; border-color: rgba(57,255,20,0.2); }
-    .tag-purple { color: #bf5af2; border-color: rgba(191,90,242,0.2); }
-    .tag-pink { color: #ff2d55; border-color: rgba(255,45,85,0.2); }
-
-    .right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      margin-left: 60px;
-    }
-
-    .profile-wrapper {
-      position: relative;
-      width: 200px;
-      height: 200px;
-    }
-    .profile-glow {
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #00ffff, #bf5af2, #ff2d55);
-      opacity: 0.5;
-      filter: blur(10px);
-    }
-    .profile-img {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #222;
-    }
-
-    /* Fox logo */
-    .fox { margin-top: 5px; }
-
+    h1 .accent { color: #5ef2ff; }
     .domain {
-      font-family: 'JetBrains Mono', 'Consolas', monospace;
-      font-size: 14px;
-      color: #888;
+      position: absolute; left: 96px; bottom: 64px;
+      font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #a6adbb;
+      letter-spacing: 0.06em;
     }
-    .domain strong { color: #e5e5e5; }
-    .domain .accent { color: #00ffff; }
+    .domain::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #5ef2ff; margin-right: 12px; vertical-align: middle; }
+    .edge { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, rgba(94,242,255,0) 0%, rgba(94,242,255,0.5) 50%, rgba(94,242,255,0) 100%); }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="grid-bg"></div>
-  <div class="orb-1"></div>
-  <div class="orb-2"></div>
-
+  <div class="glow"></div>
+  <svg class="nodes" width="360" height="300" viewBox="0 0 360 300" fill="none">
+    <g stroke="#5ef2ff" stroke-opacity="0.35" stroke-width="1">
+      <line x1="40" y1="60" x2="150" y2="30"/><line x1="150" y1="30" x2="260" y2="90"/>
+      <line x1="40" y1="60" x2="120" y2="150"/><line x1="120" y1="150" x2="260" y2="90"/>
+      <line x1="260" y1="90" x2="330" y2="190"/><line x1="120" y1="150" x2="210" y2="240"/>
+      <line x1="210" y1="240" x2="330" y2="190"/><line x1="150" y1="30" x2="120" y2="150"/>
+    </g>
+    <g fill="#5ef2ff">
+      <circle cx="40" cy="60" r="3"/><circle cx="150" cy="30" r="4"/><circle cx="260" cy="90" r="5"/>
+      <circle cx="120" cy="150" r="3.5"/><circle cx="330" cy="190" r="3"/><circle cx="210" cy="240" r="4"/>
+    </g>
+  </svg>
   <div class="content">
-    <div class="left">
-      <div class="terminal-line"><span>&gt;</span> marcela.init()</div>
-      <h1>I build data systems<br>that think.</h1>
-      <div class="subtitle">
-        <strong>Technical Data Engineer</strong>
-        <span class="amp">&</span>
-        <strong>Full-stack Developer</strong>
-      </div>
-      <div class="tags">
-        <span class="tag tag-cyan">Python</span>
-        <span class="tag tag-green">SQL</span>
-        <span class="tag tag-purple">DuckDB</span>
-        <span class="tag tag-cyan">Claude API</span>
-        <span class="tag tag-green">Node.js</span>
-        <span class="tag tag-pink">React</span>
-      </div>
-    </div>
-
-    <div class="right">
-      <div class="profile-wrapper">
-        <div class="profile-glow"></div>
-        <img class="profile-img" src="public/profile.png" alt="Marcela Rezkova">
-      </div>
-      <!-- Fox SVG -->
-      <svg class="fox" width="50" height="50" viewBox="0 0 100 100" fill="none">
-        <polygon points="25,15 15,45 35,40" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.9"/>
-        <polygon points="75,15 85,45 65,40" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.9"/>
-        <polygon points="50,20 20,50 30,78 50,85 70,78 80,50" stroke="#00ffff" stroke-width="2" fill="none" opacity="0.8"/>
-        <rect x="36" y="48" width="8" height="3" fill="#00ffff" opacity="0.9"/>
-        <rect x="56" y="48" width="8" height="3" fill="#00ffff" opacity="0.9"/>
-        <polygon points="50,58 47,62 50,65 53,62" stroke="#00ffff" stroke-width="1.5" fill="#00ffff" opacity="0.6"/>
-      </svg>
-      <div class="domain"><strong>marcela</strong><span class="accent">.fullstackdev</span>.cz</div>
-    </div>
+    <div class="hairline"></div>
+    <div class="name">Marcela Řezková<span class="dot">·</span><span class="role">AI Engineer</span></div>
+    <h1>I design products and build them with <span class="accent">AI agents.</span></h1>
   </div>
+  <div class="domain">fullstackdev.cz</div>
+  <div class="edge"></div>
 </body>
 </html>

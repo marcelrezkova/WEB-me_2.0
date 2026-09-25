@@ -44,23 +44,23 @@ export function BootSequence({ onDone }: { onDone: () => void }) {
 
   if (skip) return null;
 
+  // Non-blocking: only a thin accent line along the top edge and a mono caption top-left.
+  // Transparent, pointer-events-none, so the hero headline (the LCP element) stays visible and clickable underneath.
   return (
     <motion.div
-      className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-base"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[60]"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       aria-hidden="true"
     >
-      <div className="w-64 max-w-[70vw]">
-        <motion.div
-          className="h-px bg-accent"
-          initial={{ width: 0 }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 0.45, ease: 'easeOut' }}
-        />
-      </div>
-      <p className="font-mono text-xs tracking-widest text-ink-dim">initialising · marcela.ai</p>
+      <motion.div
+        className="h-px bg-accent"
+        initial={{ width: 0 }}
+        animate={{ width: '100%' }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
+      />
+      <p className="px-6 pt-0.5 font-mono text-xs tracking-widest text-ink-dim">initialising · marcela.ai</p>
     </motion.div>
   );
 }

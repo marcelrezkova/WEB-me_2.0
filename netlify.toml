@@ -7,12 +7,7 @@
   command = "npm run dev"
   port = 5173
 
-# Redirect www to non-www (canonical domain)
-[[redirects]]
-  from = "https://www.fullstackdev.cz/*"
-  to = "https://fullstackdev.cz/:splat"
-  status = 301
-  force = true
+# Canonical host is www.fullstackdev.cz (Netlify primary domain); Netlify redirects the apex to www itself.
 
 # Redirect all requests to index.html for SPA
 [[redirects]]

@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-25
 **Owner:** Marcela Řezková
-**Repo:** marcelrezkova/me_2_0 (branch `main`, deployed by Netlify to https://fullstackdev.cz)
+**Repo:** marcelrezkova/WEB-me_2.0 (branch `main`, deployed by Netlify to https://www.fullstackdev.cz)
 
 ## Purpose
 

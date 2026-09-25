@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marcela Řezková — CV</title>
+  <!-- Source of public/MarcelaRezkova_CV_EN.pdf. Render with: npm run cv:pdf -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0d14; --muted: #4b5563; --dim: #8a919e; --line: #e5e7eb; --accent: #0aa7bd; --accent-soft: #e6f8fb;
+    }
+    @page { size: A4; margin: 10mm 12mm 10mm 12mm; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #fff; color: var(--ink); font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 9.2pt; line-height: 1.36; }
+    body { width: 186mm; margin: 0 auto; }
+    a { color: inherit; text-decoration: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: 7px; border-bottom: 1.5px solid var(--ink); }
+    h1 { font-size: 22pt; white-space: nowrap; font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; }
+    .role { margin-top: 2px; font-size: 10pt; white-space: nowrap; color: var(--accent); font-weight: 500; letter-spacing: 0.02em; }
+    .contact { text-align: right; font-size: 8.6pt; color: var(--muted); line-height: 1.55; }
+    .contact b { color: var(--ink); font-weight: 500; }
+
+    section { margin-top: 7px; }
+    h2 { font-size: 8pt; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px solid var(--line); }
+    p.summary { font-size: 9.2pt; color: var(--ink); }
+
+    .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .pillar h3 { font-size: 9.6pt; font-weight: 600; margin-bottom: 2px; }
+    .pillar p { font-size: 8.5pt; color: var(--muted); }
+
+    .job { margin-bottom: 4px; page-break-inside: avoid; }
+    .job-head { display: flex; justify-content: space-between; align-items: baseline; }
+    .job-head h3 { font-size: 10pt; font-weight: 600; }
+    .job-head .org { color: var(--muted); font-weight: 400; }
+    .job-head .when { font-size: 8.6pt; color: var(--dim); white-space: nowrap; }
+    ul { margin: 3px 0 0 0; padding-left: 14px; }
+    li { margin: 1px 0; color: #1f2937; }
+    li::marker { color: var(--accent); }
+
+    .two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; }
+    .skills dt { font-size: 8.4pt; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+    .skills dd { font-size: 8.8pt; color: #1f2937; }
+    .small li { font-size: 8.8pt; }
+    footer { margin-top: 5px; font-size: 7.5pt; color: var(--dim); display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Marcela Řezková</h1>
+      <div class="role">AI Engineer · Agentic systems &amp; product builder</div>
+    </div>
+    <div class="contact">
+      <div><b>info@fullstackdev.cz</b> · +420 734 424 465</div>
+      <div>fullstackdev.cz · linkedin.com/in/marcelrezkova · github.com/marcelrezkova</div>
+      <div>Czech Republic · open to AI &amp; R&amp;D teams in Europe</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Profile</h2>
+    <p class="summary">
+      I design products and build them with AI agents. I run multi-agent development workflows end to end
+      (spec → plan → orchestrated implementation → automated review) and build the systems those agents operate in:
+      Rust and Python services, React front ends, data pipelines and knowledge networks that give agents context.
+      Three layers: <b>agentic AI systems</b> (orchestration, MCP, prompt and eval design), <b>full-stack &amp; data foundation</b>,
+      and <b>product &amp; delivery</b> from market data to a shipped result. Founder background. Creative when there is room to explore,
+      decisive when the facts are in hand.
+    </p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head"><h3>AI Engineer &amp; Product Builder <span class="org">· independent</span></h3><span class="when">2024 – present</span></div>
+      <ul>
+        <li>Designed and am building a local agentic platform in Rust (event-driven modular monolith, SurrealDB, MCP-ready) that collects public signals from dozens of sources and scores market opportunities into a daily brief; delivered through a spec → plan → subagent implementation → review workflow with 60+ automated tests.</li>
+        <li>Built a data platform for a consumer market with a five-layer ETL (raw → staging → core → metrics → mart), a deal-scoring engine and a React front end with 3D visualisation; development tasks dispatched to specialised AI agents via Slack and CI.</li>
+        <li>Delivered production web applications for small businesses: booking systems, admin panels, e-mail notifications, payment-gateway integration and structured-data SEO (Next.js, React, Convex, TypeScript).</li>
+        <li>Built automated analytics pipelines comparing official statistics with real market data from 14+ sources (DuckDB, GitHub Actions, interactive dashboards).</li>
+        <li>Run paid working sessions for teams on where AI agents fit in their product or workflow.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><h3>Analyst / Full-stack Developer <span class="org">· IIIDM International Consulting</span></h3><span class="when">2025 – present</span></div>
+      <ul>
+        <li>Data-intensive applications for an international consulting firm: Python back ends with React front ends, DuckDB and Supabase databases, automated monthly ETL updates with 100% data reliability; three production applications deployed.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><h3>Founder &amp; Project Administrator <span class="org">· Valeolla Consulting</span></h3><span class="when">2022 – 2025</span></div>
+      <ul>
+        <li>Founded and operated a consulting firm specialising in project documentation and administrative infrastructure for clients.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Community &amp; selected projects</h2>
+    <div class="job">
+      <div class="job-head"><h3>IT neSKOLA <span class="org">· tech community, team projects for the public sector</span></h3><span class="when">2026</span></div>
+      <ul>
+        <li>Regional government analytics tool (three-person team): API-first FastAPI service over a live SQL Server database that detects stale investment actions across thousands of records using configurable validators; presented results to mentors and stakeholders.</li>
+        <li>City mobile-app review bootcamp: UX and security assessment of a municipal application using browser automation, with a prioritised improvement proposal.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="job-head"><h3>AI safety evaluation <span class="org">· contractor</span></h3><span class="when">2026</span></div>
+      <ul>
+        <li>Authored locale-native adversarial prompts and peer reviews for a frontier-model red-teaming programme (Czech market).</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="two">
+    <section>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>AI</dt><dd>Claude API &amp; Agent SDK, Claude Code, MCP, multi-agent orchestration, Ollama, prompt &amp; eval design, AI code review</dd>
+        <dt>Languages</dt><dd>Python, TypeScript, Rust, SQL</dd>
+        <dt>Frontend</dt><dd>React, Next.js, TailwindCSS, Three.js</dd>
+        <dt>Backend &amp; data</dt><dd>FastAPI, DuckDB, Supabase, SurrealDB, SQL Server, ETL, web scraping</dd>
+        <dt>Ops</dt><dd>Docker, GitHub Actions, CI/CD, Netlify, Railway, Fly.io, Stripe</dd>
+      </dl>
+    </section>
+    <section>
+      <h2>Certifications &amp; languages</h2>
+      <ul class="small">
+        <li>Google Cloud Data Engineer Professional Certificate</li>
+        <li>Data Analyst Professional Certification</li>
+      </ul>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Czech (native) · English (advanced) · German (intermediate)</dd>
+      </dl>
+    </section>
+  </div>
+
+  <footer>
+    <span>Marcela Řezková · AI Engineer</span>
+    <span class="mono">fullstackdev.cz</span>
+  </footer>
+</body>
+</html>

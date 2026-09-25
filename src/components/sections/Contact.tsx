@@ -1,5 +1,5 @@
 import { ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react';
-import { bookingUrl, links } from '../../config';
+import { links } from '../../config';
 import { Button } from '../ui/Button';
 import { Reveal } from '../motion/Reveal';
 import { Section } from '../ui/Section';
@@ -34,7 +34,7 @@ export function Contact() {
         ))}
       </div>
       <Reveal className="mt-12">
-        <Button href={bookingUrl()} variant="primary" external>
+        <Button href="#work-with-me" variant="primary">
           Book a session
         </Button>
       </Reveal>

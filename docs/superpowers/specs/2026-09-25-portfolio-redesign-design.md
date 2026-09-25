@@ -124,3 +124,16 @@ Small PRs into `main`, each deployable on its own (the site must never be half-m
 6. Meta/SEO/OG image refresh, old assets cleanup, Lighthouse pass.
 
 Commit messages end with `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+
+## Accepted deviations (2026-09-25)
+
+- Hero headline does not assemble character by character; it renders as a static H1 for LCP. Section headings use the scramble-in effect instead.
+- Particle count is 1600 on desktop and 600 on mobile, set to stay inside the Lighthouse performance budget.
+- Lighthouse mobile score is 90 with an LCP of 3.2 s, due to the web font swap.
+- Contact e-mail is info@fullstackdev.cz.
+- `@react-three/fiber` is pinned to v8 for React 18 compatibility.
+
+## Open infrastructure items
+
+- The bare domain `fullstackdev.cz` has DNS pointed at Google forwarding, so HTTPS fails there and only the `www` subdomain is served by Netlify. Fix the DNS before 20 Nov 2026, or switch absolute URLs to `www` in the meantime.
+- `netlify/netlify.toml` is not at the repo root, so its headers/redirects are inactive. Move it only after the DNS issue above is fixed.

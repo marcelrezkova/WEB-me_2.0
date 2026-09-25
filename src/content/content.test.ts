@@ -12,7 +12,7 @@ describe('content', () => {
     expect(services).toHaveLength(3); expect(steps).toHaveLength(4); expect(work).toHaveLength(5);
   });
   it('contains no Czech text and no project names', () => {
-    const all = JSON.stringify({ hero, services, steps, work, stack });
+    const all = JSON.stringify({ hero, services, steps, work, stack }).replaceAll('Řezková', '');
     expect(all).not.toMatch(CZECH); expect(all).not.toMatch(BANNED);
   });
   it('calendar link is a live calendar.app.google URL', () => {

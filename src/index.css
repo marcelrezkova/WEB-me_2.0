@@ -14,7 +14,7 @@ body {
 
 .glass {
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-  border: 1px solid var(--line, rgba(255,255,255,0.08));
+  border: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(14px);
 }
 .hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }

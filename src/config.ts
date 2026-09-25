@@ -7,5 +7,3 @@ export const links = {
   github: 'https://github.com/marcelrezkova',
   cv: '/MarcelaRezkova_CV_EN.pdf',
 } as const;
-
-export const bookingUrl = () => links.stripe || links.calendar;

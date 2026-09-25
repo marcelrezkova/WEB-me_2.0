@@ -5,7 +5,7 @@ import { makeNetwork } from './particles';
 
 function Network({ count }: { count: number }) {
   const group = useRef<THREE.Group>(null);
-  const { pointer } = useThree();
+  const pointer = useThree((s) => s.pointer);
   const { positions, links } = useMemo(() => makeNetwork(count, 6, 11), [count]);
   const linePositions = useMemo(() => {
     const arr = new Float32Array(links.length * 3);

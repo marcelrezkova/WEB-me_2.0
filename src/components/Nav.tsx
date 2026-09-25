@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { TechFoxIcon } from './FoxMascot';
 import { Button } from './ui/Button';
-import { bookingUrl } from '../config';
 
 const navLinks = [
   { label: 'What I do', href: '#what' },
@@ -52,7 +51,7 @@ export function Nav() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Button href={bookingUrl()} variant="primary" external className="hidden px-5 py-2 text-sm sm:inline-flex">
+          <Button href="#work-with-me" variant="primary" className="hidden px-5 py-2 text-sm sm:inline-flex">
             Book a session
           </Button>
           <button
@@ -83,7 +82,7 @@ export function Nav() {
               </li>
             ))}
           </ul>
-          <Button href={bookingUrl()} variant="primary" external className="mt-10 w-full">
+          <Button href="#work-with-me" variant="primary" className="mt-10 w-full">
             Book a session
           </Button>
         </div>

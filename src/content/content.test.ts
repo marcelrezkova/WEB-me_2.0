@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { hero, services, steps, work, stack } from './index';
-import { links, bookingUrl } from '../config';
+import { links } from '../config';
 // ?raw reads the file as text via Vite (no @types/node needed for typecheck)
 import indexHtml from '../../index.html?raw';
 
@@ -15,9 +15,8 @@ describe('content', () => {
     const all = JSON.stringify({ hero, services, steps, work, stack });
     expect(all).not.toMatch(CZECH); expect(all).not.toMatch(BANNED);
   });
-  it('booking falls back to calendar when stripe is empty', () => {
+  it('calendar link is a live calendar.app.google URL', () => {
     expect(links.calendar).toMatch(/^https:\/\/calendar\.app\.google\//);
-    expect(bookingUrl()).toBe(links.stripe || links.calendar);
   });
   it('stripe payment link is a live buy.stripe.com URL', () => {
     expect(links.stripe).toMatch(/^https:\/\/buy\.stripe\.com\//);

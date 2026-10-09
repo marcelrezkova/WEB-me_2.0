@@ -42,3 +42,6 @@ body {
 /* lenis drives scrolling; native smooth scroll would fight it. */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Buttons and button-styled CTAs use JetBrains Mono (body stays Space Grotesk). Button.tsx carries the same via utilities. */
+button, .btn, a.button { font-family: theme('fontFamily.mono'); font-weight: 600; letter-spacing: 0.02em; }

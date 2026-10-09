@@ -14,7 +14,7 @@ export function Button({ href, children, variant = 'primary', external, classNam
     <a
       href={href}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-medium transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${styles[variant]} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-mono font-semibold tracking-[0.02em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${styles[variant]} ${className}`}
     >
       {children}
     </a>
